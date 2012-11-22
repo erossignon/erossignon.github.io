@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Gadz-Geek Blog]]></title>
-  <link href="http://erossignon.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Fun | Gadz-Geek Blog]]></title>
+  <link href="http://erossignon.github.com/blog/categories/fun/atom.xml" rel="self"/>
   <link href="http://erossignon.github.com/"/>
   <updated>2012-11-22T17:10:23+01:00</updated>
   <id>http://erossignon.github.com/</id>
@@ -121,7 +121,7 @@ on <a href="Temperatures,%20light%20levels,%20pressure,%20logging,%20LCD,%20PCB%
 
 <p>{% youtube Hu2s9cxKuIM %}</p>
 
-<p>Why not use the <a href="http://cgi.cottonpickers.plus.com/~cottonpickers/forum/viewtopic.php?f=4&amp;t=3">&#8220;Solar Battery Cells&#8221;</a> propepsed by cottonpickers to make this weather station autonomous ?
+<p>Why not use the <a href="http://cgi.cottonpickers.plus.com/~cottonpickers/forum/viewtopic.php?f=4&amp;t=3">"Solar Battery Cells"</a> propepsed by cottonpickers to make this weather station autonomous ?
 <img src="http://img205.imageshack.us/img205/1992/img3680iw.jpg"></img>
 <img src="http://img577.imageshack.us/img577/9264/img3681v.jpg"><img></p>
 
