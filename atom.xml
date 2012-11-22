@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Gadz-Geek Blog]]></title>
+  <link href="http://erossignon.github.com/atom.xml" rel="self"/>
+  <link href="http://erossignon.github.com/"/>
+  <updated>2012-11-22T11:45:47+01:00</updated>
+  <id>http://erossignon.github.com/</id>
+  <author>
+    <name><![CDATA[Etienne Rossignon]]></name>
+    <email><![CDATA[etienne.rossignon@gadz.org]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[10 awsome applications with Raspberry PI]]></title>
+    <link href="http://erossignon.github.com/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/"/>
+    <updated>2012-11-22T11:18:00+01:00</updated>
+    <id>http://erossignon.github.com/blog/2012/11/22/10-awsome-applications-with-raspberry-pi</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+</feed>
