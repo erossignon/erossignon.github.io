@@ -27,6 +27,7 @@ with a GlobalSat BR-305 GPS Receiver which has a RS232 connection and a program 
 {% youtube zPsN0wH7hKY  %}
 
 ## 3. a Geiger Counter:
+
 Cooking Hack provides a [tutorial to build a Radiation Sensor]
 (http://www.cooking-hacks.com/index.php/documentation/tutorials/geiger-counter-raspberry-pi-radiation-sensor-board)
 
@@ -122,6 +123,7 @@ on [RasPi.tv](Temperatures, light levels, pressure, logging, LCD, PCB - bringing
 {% youtube Hu2s9cxKuIM %}
 
 Why not use the ["Solar Battery Cells"](http://cgi.cottonpickers.plus.com/~cottonpickers/forum/viewtopic.php?f=4&t=3) propepsed by cottonpickers to make this weather station autonomous ?
+
 <img width="520px" src="http://img205.imageshack.us/img205/1992/img3680iw.jpg"></img>
 <img width="520px" src="http://img577.imageshack.us/img577/9264/img3681v.jpg"><img>
 
