@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Fun | Gadz-Geek Blog]]></title>
   <link href="http://erossignon.github.com/blog/categories/fun/atom.xml" rel="self"/>
   <link href="http://erossignon.github.com/"/>
-  <updated>2012-11-24T23:34:05+01:00</updated>
+  <updated>2012-11-25T00:14:05+01:00</updated>
   <id>http://erossignon.github.com/</id>
   <author>
     <name><![CDATA[Etienne Rossignon]]></name>
@@ -35,7 +35,14 @@ explains how to set up a print Server with cups.</li>
 <p><a href="https://logicethos.com/blog/raspberry-pi-run/">Stuart Johnson</a> has created a GPS Tracker, combining a Raspberry PI
 with a GlobalSat BR-305 GPS Receiver which has a RS232 connection and a program written in Mono C#.</p>
 
-<p><iframe width="560" height="315" src="http://www.youtube.com/embed/zPsN0wH7hKY?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=zPsN0wH7hKY">Sibelius</a></p>
+<p><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=zPsN0wH7hKY">GPS Tracking with a Raspberry Pi</a><p>More details here https://logicethos.com/blog/raspberry-pi-run/
+Raspberry Pi
+GlobalSat BR-305 GPS
+Pi232 RS232 GPIO Expansion board
+Mono
+Turbo Exchange, & Websocket Map
+
+I used a GlobalSat BR-305 GPS receiver, to capture GPS data, and a GSM dongle to upload the data to the Logic Ethos GPS tracking platform. Software is written in C# Mono.</p></p>
 
 <h2>3. a Geiger Counter:</h2>
 
@@ -44,7 +51,7 @@ with a GlobalSat BR-305 GPS Receiver which has a RS232 connection and a program 
 
 <p> <img src="http://www.cooking-hacks.com/skin/frontend/default/cooking/images/catalog/documentation/raspberry_radiation/raspberry_radiation.JPG"></img></p>
 
-<p> <iframe width="560" height="315" src="http://www.youtube.com/embed/PONR_s7AXIg?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=PONR_s7AXIg">Sibelius</a></p>
+<p> <a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=PONR_s7AXIg">radioactive Raspberry Pi!</a><p>Geiger counter (http://mightyohm.com/blog/products/geiger-counter/) connected to a Raspberry Pi (http://www.element14.com/community/groups/raspberry-pi) with count visualized using the Python PyGame library. (by Bonnie King)</p></p>
 
 <p> A <a href="http://www.libelium.com/wireless_sensor_networks_to_control_radiation_levels_geiger_counters/">more advance project</a>
  incorporates a GPS Tracker and Zigbee wireless less system.</p>
@@ -53,15 +60,22 @@ with a GlobalSat BR-305 GPS Receiver which has a RS232 connection and a program 
 
 <h3>a voice controled robot</h3>
 
-<p> <iframe width="560" height="315" src="http://www.youtube.com/embed/_U_v9tRD68k?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=_U_v9tRD68k">Sibelius</a></p>
+<p> <a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=_U_v9tRD68k">Voice Controlled Robot using a Raspberry Pi</a><p>I've managed to make the Raspberry Pi work as a speech recognition module to control a robotic arm with a USB interface. This is related to my previous video (http://youtu.be/32nIxJZvqtI), and as usual I've posted instructions on how to get it working on my website: http://www.aonsquared.co.uk/raspi_voice_control</p></p>
 
 <h3>Raspberry Pi Robot Test!</h3>
 
-<p> <iframe width="560" height="315" src="http://www.youtube.com/embed/VVNgPjM5pU4?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=VVNgPjM5pU4">Sibelius</a></p>
+<p> <a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=VVNgPjM5pU4">Raspberry Pi Robot Test!</a><p>A test of my Raspberry Pi Robot running Debian Linux, LAMP server & Node.js (Now.js Mod)
+Being controlled via my computer using Wi-Fi, The only thing that is wired is the power supply.
+
+Robot hacked from a BigTrak Jr.
+
+Music One Quarter By Fairlight.</p></p>
 
 <h3>Raspberry Pi robot using node.js and Socket.io</h3>
 
-<p> <iframe width="560" height="315" src="http://www.youtube.com/embed/SWSpRyCDfZE?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=SWSpRyCDfZE">Sibelius</a></p>
+<p> <a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=SWSpRyCDfZE">Raspberry Pi robot using node.js and socket.io</a><p>Demo of my first attempt to control GPIO pins on the Raspberry Pi from within the browser using websockets.
+
+Code: https://github.com/mirceageorgescu/raspi-tank</p></p>
 
 <h2>5. Home automation</h2>
 
@@ -105,7 +119,7 @@ The Acorn Archimedes was the first computer  equiped with a ARM based CPU.
 The instructions to install this 25 year old mythic Operating system on the RPI can be found here : <a href="http://www.raspberrypi.org/archives/2338">RISCOC for Raspberry Computer</a>.
 <img src="http://www.raspberrypi.org/wp-content/uploads/2012/11/srevill_ropi_projector.jpg"></img></p>
 
-<p><iframe width="560" height="315" src="http://www.youtube.com/embed/0LiudJUlOi0?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=0LiudJUlOi0">Sibelius</a></p>
+<p><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=0LiudJUlOi0">Raspberry Pi running RISC OS 5</a><p>I have a stack of old RISC OS machines including an Iyonix.  I loved them.  Best UI ever and still.  But they don't have all the games and hardware of Windows or the internet ability of Linux.  So it's been a while since I used one.  When I heard a that RISC OS would run on the Pi, I had to try it for myself!  Brilliant.  Here's me trying it for the second time.</p></p>
 
 <h2>11. Vintage Video Games</h2>
 
@@ -121,14 +135,18 @@ The instructions to install this 25 year old mythic Operating system on the RPI 
 <h2>13. Build your own 3D printer</h2>
 
 <p>Raspberry pi to 3D print with webinterface in node.js
-<iframe width="560" height="315" src="http://www.youtube.com/embed/tsMdusrO6bk?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=tsMdusrO6bk">Sibelius</a></p>
+<a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=tsMdusrO6bk">Raspberry pi to 3D print with webinterface in node.js!</a><p>Well wanting to have an autonomous way of printing my 3d objects. Did it with the cheap raspberry pi! This way you can have farms of printers and all control them with some clicks in your browser. 
+
+I finally had some time to clean it up and post on github here:
+https://github.com/w-A-L-L-e/printerface</p></p>
 
 <h2>14. Weather Station</h2>
 
 <p>Connecting 2 temperature sensors, light sensor and a barometric pressure sensor on a Raspberry to build a weather station.
 on <a href="Temperatures,%20light%20levels,%20pressure,%20logging,%20LCD,%20PCB%20-%20bringing%20it%20all%20together">RasPi.tv</a></p>
 
-<p><iframe width="560" height="315" src="http://www.youtube.com/embed/Hu2s9cxKuIM?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=Hu2s9cxKuIM">Sibelius</a></p>
+<p><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=Hu2s9cxKuIM">Raspberry Pi Weather Station on a Proto-Plate</a><p>I've finally got my Weather Station with temp sensors, light sensors and a barometric pressure sensor onto a nice compact board which sits on top of the Raspberry Pi.
+Video goes with this blog article http://raspi.tv/2012/temperatures-light-levels-pressure-logging-lcd-pcb-bringing-it-all-together</p></p>
 
 <p>Why not use the <a href="http://cgi.cottonpickers.plus.com/~cottonpickers/forum/viewtopic.php?f=4&amp;t=3">"Solar Battery Cells"</a> propepsed by cottonpickers to make this weather station autonomous ?
 <img width="520px" src="http://img205.imageshack.us/img205/1992/img3680iw.jpg"></img>
@@ -139,7 +157,11 @@ on <a href="Temperatures,%20light%20levels,%20pressure,%20logging,%20LCD,%20PCB%
 <p><img  width="520px" src="http://www.daveakerman.com/wp-content/uploads/2012/07/P1040569-1024x682.jpg" alt="Raspberry Pi in the Sky"></img></p>
 
 <p>Launch of Raspberry Pi Into Near Space by weather balloon
-<iframe width="560" height="315" src="http://www.youtube.com/embed/OnmRudVVq_U?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=OnmRudVVq_U">Sibelius</a>
+<a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=OnmRudVVq_U">Launch of Raspberry Pi Into Near Space by weather balloon</a><p>Launch of my latest weather balloon flight, with 3 payloads:
+
+PIE1 - Live images sent down by a Raspberry Pi
+UAVA - Telemetry and GoPro HD, by Anthony Stirk
+BUZZ8 - Telemetry backup</p>
 <a href="http://www.daveakerman.com/?p=592">PIE1 - Raspberry Pi Sends Live Images from Near Space</a></p>
 
 <h2>16. a HPC Computer</h2>
@@ -152,7 +174,13 @@ composed with a cluster of 64 Raspberry PI</p>
 <p>Supercomputer get built using Raspberry Pi and Lego
 <img src="http://cdn.arstechnica.net/wp-content/uploads/2012/09/raspberry-pi-supercomputer-2-640x425.jpg"></img></p>
 
-<p><iframe width="400" height="400" src="http://www.youtube.com/embed/Jq5nrHz9I94?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:400px;height:400px;" href="http://www.youtube.com/watch?v=Jq5nrHz9I94">Sibelius</a></p>
+<p><a class="youtube-lazy-link" style="width:400px;height:400px;" href="http://www.youtube.com/watch?v=Jq5nrHz9I94">University of Southampton - Southampton engineers a Raspberry Pi Supercomputer</a><p>Computational Engineers at the University of Southampton have built a supercomputer from 64 Raspberry Pi computers and Lego.
+
+The team, led by Professor Simon Cox, consisted of Richard Boardman, Andy Everett, Steven Johnston, Gereon Kaiping, Neil O'Brien, Mark Scott and Oz Parchment, along with Professor Cox's son James Cox (aged 6) who provided specialist support on Lego and system testing.
+
+Professor Cox comments: "As soon as we were able to source sufficient Raspberry Pi computers we wanted to see if it was possible to link them together into a supercomputer. We installed and built all of the necessary software on the Pi starting from a standard Debian Wheezy system image and we have published a guide so you can build your own supercomputer."
+To read the full story go to:
+http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.shtml</p></p>
 
 <ul>
 <li><a href="http://www.hpcwire.com/hpcwire/2012-09-12/supercomputer_gets_built_using_rasberry_pi_computers_and_lego.html">Supercomputer gets built using Raspberry Pi computers and Lego</a></li>
