@@ -8,7 +8,7 @@ categories:  [ RaspberryPi , Fun , embedded linux ]
 ---
 
 
-## 1. a Print Server
+## 1. a print server
 
 Old printers can be refurbished into wireless printers using a Raspeberry PI. This makes it a very cheap solution.
 
@@ -40,14 +40,14 @@ Cooking Hack provides a [tutorial to build a Radiation Sensor]
 ## 4. Home Robotic:
 
 ### a voice controled robot
+
  {% youtube _U_v9tRD68k %}
 
 ### Raspberry Pi Robot Test! 
  {% youtube VVNgPjM5pU4 %}
 
-#  Raspberry Pi robot using node.js and Socket.io 
-
- <iframe width="215" height="121" src="http://www.youtube.com/embed/SWSpRyCDfZE" frameborder="0" allowfullscreen></iframe>
+###  Raspberry Pi robot using node.js and Socket.io 
+ {% youtube SWSpRyCDfZE %}
 
 ## 5. Home automation
 
@@ -58,9 +58,7 @@ Cooking Hack provides a [tutorial to build a Radiation Sensor]
 [MONIRUL PATHAN](http://monirulpathan.com/afterhours/raspberry-pi-thermostat) explains how he has built a home thermostat using 3 simple steps.
 <img src="http://monirulpathan.com/afterhours/wp-content/uploads/2012/09/2012-09-24-22.33.57.jpg"></img>
 
-
-
-## Remote controle of GPIO with iPhone
+### Remote control of GPIO with iPhone
   
 ## 6. a media center
 
@@ -124,13 +122,13 @@ on [RasPi.tv](Temperatures, light levels, pressure, logging, LCD, PCB - bringing
 {% youtube Hu2s9cxKuIM %}
 
 Why not use the ["Solar Battery Cells"](http://cgi.cottonpickers.plus.com/~cottonpickers/forum/viewtopic.php?f=4&t=3) propepsed by cottonpickers to make this weather station autonomous ?
-<img src="http://img205.imageshack.us/img205/1992/img3680iw.jpg"></img>
-<img src="http://img577.imageshack.us/img577/9264/img3681v.jpg"><img>
+<img width="520px" src="http://img205.imageshack.us/img205/1992/img3680iw.jpg"></img>
+<img width="520px" src="http://img577.imageshack.us/img577/9264/img3681v.jpg"><img>
 
 
 ## 15. a Near Space Craft
 
-<img src="http://www.daveakerman.com/wp-content/uploads/2012/07/P1040569-1024x682.jpg" alt="Raspberry Pi in the Sky"></img>
+<img  width="520px" src="http://www.daveakerman.com/wp-content/uploads/2012/07/P1040569-1024x682.jpg" alt="Raspberry Pi in the Sky"></img>
 
 Launch of Raspberry Pi Into Near Space by weather balloon
 {% youtube OnmRudVVq_U %}
