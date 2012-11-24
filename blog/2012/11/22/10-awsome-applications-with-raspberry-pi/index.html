@@ -9,7 +9,7 @@
   <meta name="author" content="Etienne Rossignon">
 
   
-  <meta name="description" content="1. a Print Server Old printers can be refurbished into wireless printers using a Raspeberry PI. This makes it a very cheap solution. The Raspberry Pi &hellip;">
+  <meta name="description" content="1. a print server Old printers can be refurbished into wireless printers using a Raspeberry PI. This makes it a very cheap solution. The Raspberry Pi &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,6 +30,76 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+
+  <script src='http://code.jquery.com/jquery-latest.js' type='text/javascript'></script>
+
+<script type='text/javascript'>
+//<![CDATA[
+// Lazy loading of youtube videos by MS-potilas 2011
+// Needs jQuery. Place code before </head>.
+// See http://jsfiddle.net/mUqNj/ and http://yabtb.blogspot.com/2011/12/lazy-load-youtube-videos.html
+//
+// Usage: 
+// <a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=3u8sEaohHMk">Sibelius</a>
+//  - style is optional, if omitted, default width 560 and height 315 pixels is used
+//
+$(document).ready(function() {
+  $("a.youtube-lazy-link").each(function(index) {
+    var embedparms = $(this).attr("href").split("/embed/")[1];
+    if(!embedparms) embedparms = $(this).attr("href").split("?v=")[1].replace(/\&/,'?');
+    var youid = embedparms.split("?")[0].split("#")[0];
+    var start = embedparms.match(/[#&]t=(\d+)s/);
+    if(start) start = start[1];
+    else {
+      start = embedparms.match(/[#&]t=(\d+)m(\d+)s/);
+      if(start) start = parseInt(start[1])*60+parseInt(start[2]);
+      else {
+        start = embedparms.match(/[?&]start=(\d+)/);
+        if(start) start = start[1];
+      }
+    }
+    embedparms = embedparms.split("#")[0];
+    if(start && embedparms.indexOf("start=") == -1)
+      embedparms += ((embedparms.indexOf("?")==-1) ? "?" : "&") + "start="+start;
+    if(embedparms.indexOf("showinfo=0") != -1)
+      $(this).html('');
+    $(this).prepend('<div style="height:'+(parseInt($(this).css("height"))-4)+'px;width:'+(parseInt($(this).css("width"))-4)+'px;" class="youtube-lazy-link-div"></div>&nbsp;')
+    $(this).css("background", "#000 url(http://i2.ytimg.com/vi/"+youid+"/0.jpg) center center no-repeat");
+    $(this).attr("id", youid);
+    $(this).attr("href", "http://www.youtube.com/watch?v="+youid+(start ? "#t="+start+"s" : ""));
+    var emu = 'http://www.youtube.com/embed/'+embedparms;
+    emu += ((emu.indexOf("?")==-1) ? "?" : "&") + "autoplay=1";
+    var videoFrame = '<iframe width="'+parseInt($(this).css("width"))+'" height="'+parseInt($(this).css("height"))+'" style="vertical-align:top;" src="'+emu+'" frameborder="0" allowfullscreen></iframe>';
+    $(this).attr("onclick", "$('#"+youid+"').replaceWith('"+videoFrame+"');return false;");
+  });
+})
+//]]>
+</script>
+<style type='text/css'>
+a.youtube-lazy-link {
+  vertical-align:top;
+  background:#555;
+  width:560px; height:315px;
+  background-size:cover;
+  text-decoration:none;
+  color:#DDD;
+  text-align:left;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  display:inline-block;
+}
+a.youtube-lazy-link:hover {
+  text-decoration:none;
+  color:#FFF;
+}
+.youtube-lazy-link-div {
+  border:2px solid #000;
+  background: url(http://lh4.googleusercontent.com/-QCeB6REIFlE/TuGUlY3N46I/AAAAAAAAAaI/9-urEUtpKcI/s800/youtube-play-button.png) center center no-repeat;
+  position:absolute;
+}
+.youtube-lazy-link-div:hover {
+  background: url(http://lh5.googleusercontent.com/-oBFjswrosz4/TuHqainRc3I/AAAAAAAAAbE/t3rMQuSJdLA/s800/youtube-play-button-hover.png) center center no-repeat;
+}
+</style>
 
 </head>
 
@@ -90,7 +160,7 @@
   </header>
 
 
-<div class="entry-content"><h2>1. a Print Server</h2>
+<div class="entry-content"><h2>1. a print server</h2>
 
 <p>Old printers can be refurbished into wireless printers using a Raspeberry PI. This makes it a very cheap solution.</p>
 
@@ -107,8 +177,10 @@ explains how to set up a print Server with cups.</li>
 <p><a href="https://logicethos.com/blog/raspberry-pi-run/">Stuart Johnson</a> has created a GPS Tracker, combining a Raspberry PI
 with a GlobalSat BR-305 GPS Receiver which has a RS232 connection and a program written in Mono C#.</p>
 
-<iframe width="210" height="158" src="http://www.youtube.com/embed/zPsN0wH7hKY?color=white&theme=light"></iframe>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/zPsN0wH7hKY?color=white&theme=light"></iframe>
 
+
+<p><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=zPsN0wH7hKY">Sibelius</a></p>
 
 <h2>3. a Geiger Counter:</h2>
 
@@ -117,7 +189,7 @@ with a GlobalSat BR-305 GPS Receiver which has a RS232 connection and a program 
 
 <p> <img src="http://www.cooking-hacks.com/skin/frontend/default/cooking/images/catalog/documentation/raspberry_radiation/raspberry_radiation.JPG"></img></p>
 
-<p> <iframe width="210" height="158" src="http://www.youtube.com/embed/PONR_s7AXIg?color=white&theme=light"></iframe></p>
+<p> <iframe width="560" height="315" src="http://www.youtube.com/embed/PONR_s7AXIg?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=PONR_s7AXIg">Sibelius</a></p>
 
 <p> A <a href="http://www.libelium.com/wireless_sensor_networks_to_control_radiation_levels_geiger_counters/">more advance project</a>
  incorporates a GPS Tracker and Zigbee wireless less system.</p>
@@ -126,15 +198,15 @@ with a GlobalSat BR-305 GPS Receiver which has a RS232 connection and a program 
 
 <h3>a voice controled robot</h3>
 
-<p> <iframe width="210" height="158" src="http://www.youtube.com/embed/_U_v9tRD68k?color=white&theme=light"></iframe></p>
+<p> <iframe width="560" height="315" src="http://www.youtube.com/embed/_U_v9tRD68k?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=_U_v9tRD68k">Sibelius</a></p>
 
 <h3>Raspberry Pi Robot Test!</h3>
 
-<p> <iframe width="210" height="158" src="http://www.youtube.com/embed/VVNgPjM5pU4?color=white&theme=light"></iframe></p>
+<p> <iframe width="560" height="315" src="http://www.youtube.com/embed/VVNgPjM5pU4?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=VVNgPjM5pU4">Sibelius</a></p>
 
-<h1>Raspberry Pi robot using node.js and Socket.io</h1>
+<h3>Raspberry Pi robot using node.js and Socket.io</h3>
 
-<p> <iframe width="215" height="121" src="http://www.youtube.com/embed/SWSpRyCDfZE" frameborder="0" allowfullscreen></iframe></p>
+<p> <iframe width="560" height="315" src="http://www.youtube.com/embed/SWSpRyCDfZE?color=white&theme=light"></iframe><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=SWSpRyCDfZE">Sibelius</a></p>
 
 <h2>5. Home automation</h2>
 
@@ -145,7 +217,7 @@ with a GlobalSat BR-305 GPS Receiver which has a RS232 connection and a program 
 <p><a href="http://monirulpathan.com/afterhours/raspberry-pi-thermostat">MONIRUL PATHAN</a> explains how he has built a home thermostat using 3 simple steps.
 <img src="http://monirulpathan.com/afterhours/wp-content/uploads/2012/09/2012-09-24-22.33.57.jpg"></img></p>
 
-<h2>Remote controle of GPIO with iPhone</h2>
+<h3>Remote control of GPIO with iPhone</h3>
 
 <h2>6. a media center</h2>
 
@@ -178,8 +250,10 @@ The Acorn Archimedes was the first computer  equiped with a ARM based CPU.
 The instructions to install this 25 year old mythic Operating system on the RPI can be found here : <a href="http://www.raspberrypi.org/archives/2338">RISCOC for Raspberry Computer</a>.
 <img src="http://www.raspberrypi.org/wp-content/uploads/2012/11/srevill_ropi_projector.jpg"></img></p>
 
-<iframe width="210" height="158" src="http://www.youtube.com/embed/0LiudJUlOi0?color=white&theme=light"></iframe>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/0LiudJUlOi0?color=white&theme=light"></iframe>
 
+
+<p><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=0LiudJUlOi0">Sibelius</a></p>
 
 <h2>11. Vintage Video Games</h2>
 
@@ -196,31 +270,36 @@ The instructions to install this 25 year old mythic Operating system on the RPI 
 
 <p>Raspberry pi to 3D print with webinterface in node.js</p>
 
-<iframe width="210" height="158" src="http://www.youtube.com/embed/tsMdusrO6bk?color=white&theme=light"></iframe>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/tsMdusrO6bk?color=white&theme=light"></iframe>
 
+
+<p><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=tsMdusrO6bk">Sibelius</a></p>
 
 <h2>14. Weather Station</h2>
 
 <p>Connecting 2 temperature sensors, light sensor and a barometric pressure sensor on a Raspberry to build a weather station.
 on <a href="Temperatures,%20light%20levels,%20pressure,%20logging,%20LCD,%20PCB%20-%20bringing%20it%20all%20together">RasPi.tv</a></p>
 
-<iframe width="210" height="158" src="http://www.youtube.com/embed/Hu2s9cxKuIM?color=white&theme=light"></iframe>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/Hu2s9cxKuIM?color=white&theme=light"></iframe>
 
+
+<p><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=Hu2s9cxKuIM">Sibelius</a></p>
 
 <p>Why not use the <a href="http://cgi.cottonpickers.plus.com/~cottonpickers/forum/viewtopic.php?f=4&amp;t=3">&#8220;Solar Battery Cells&#8221;</a> propepsed by cottonpickers to make this weather station autonomous ?
-<img src="http://img205.imageshack.us/img205/1992/img3680iw.jpg"></img>
-<img src="http://img577.imageshack.us/img577/9264/img3681v.jpg"><img></p>
+<img width="520px" src="http://img205.imageshack.us/img205/1992/img3680iw.jpg"></img>
+<img width="520px" src="http://img577.imageshack.us/img577/9264/img3681v.jpg"><img></p>
 
 <h2>15. a Near Space Craft</h2>
 
-<p><img src="http://www.daveakerman.com/wp-content/uploads/2012/07/P1040569-1024x682.jpg" alt="Raspberry Pi in the Sky"></img></p>
+<p><img  width="520px" src="http://www.daveakerman.com/wp-content/uploads/2012/07/P1040569-1024x682.jpg" alt="Raspberry Pi in the Sky"></img></p>
 
 <p>Launch of Raspberry Pi Into Near Space by weather balloon</p>
 
-<iframe width="210" height="158" src="http://www.youtube.com/embed/OnmRudVVq_U?color=white&theme=light"></iframe>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/OnmRudVVq_U?color=white&theme=light"></iframe>
 
 
-<p><a href="http://www.daveakerman.com/?p=592">PIE1 - Raspberry Pi Sends Live Images from Near Space</a></p>
+<p><a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=OnmRudVVq_U">Sibelius</a>
+<a href="http://www.daveakerman.com/?p=592">PIE1 - Raspberry Pi Sends Live Images from Near Space</a></p>
 
 <h2>16. a HPC Computer</h2>
 
@@ -234,6 +313,8 @@ composed with a cluster of 64 Raspberry PI</p>
 
 <iframe width="400" height="400" src="http://www.youtube.com/embed/Jq5nrHz9I94?color=white&theme=light"></iframe>
 
+
+<p><a class="youtube-lazy-link" style="width:400px;height:400px;" href="http://www.youtube.com/watch?v=Jq5nrHz9I94">Sibelius</a></p>
 
 <ul>
 <li><a href="http://www.hpcwire.com/hpcwire/2012-09-12/supercomputer_gets_built_using_rasberry_pi_computers_and_lego.html">Supercomputer gets built using Raspberry Pi computers and Lego</a></li>
