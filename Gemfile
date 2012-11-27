@@ -15,4 +15,5 @@ group :development do
   gem 'liquid', '~> 2.3.0'
 end
 
+gem 'debugger', group: [:development, :test]
 gem 'sinatra', '~> 1.3.2'

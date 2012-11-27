@@ -45,9 +45,11 @@ Cooking Hack provides a [tutorial to build a Radiation Sensor]
  {% youtube _U_v9tRD68k %}
 
 ### Raspberry Pi Robot Test! 
+
  {% youtube VVNgPjM5pU4 %}
 
 ###  Raspberry Pi robot using node.js and Socket.io 
+
  {% youtube SWSpRyCDfZE %}
 
 ## 5. Home automation
@@ -102,7 +104,6 @@ The instructions to install this 25 year old mythic Operating system on the RPI 
 
 <img src="http://static.geekbeat.tv/wp-content/uploads/2012/08/Raspberry_Pi_MAME.jpg"></img>
 [Elite](http://kimondo.co.uk/elite-making-a-game-that-looks-as-good-as-the-box-art)
-<img src="http://kimondo.co.uk/elite-making-a-game-that-looks-as-good-as-the-box-art/beebeilite.gif"></img>
 <img src="http://regmedia.co.uk/2012/05/16/arch_5.png"></img>
 
 
@@ -130,7 +131,7 @@ Why not use the ["Solar Battery Cells"](http://cgi.cottonpickers.plus.com/~cotto
 
 ## 15. a Near Space Craft
 
-<img  width="520px" src="http://www.daveakerman.com/wp-content/uploads/2012/07/P1040569-1024x682.jpg" alt="Raspberry Pi in the Sky"></img>
+<img  style="text-align:center" width="520px" src="http://www.daveakerman.com/wp-content/uploads/2012/07/P1040569-1024x682.jpg" alt="Raspberry Pi in the Sky"></img>
 
 Launch of Raspberry Pi Into Near Space by weather balloon
 {% youtube OnmRudVVq_U %}
