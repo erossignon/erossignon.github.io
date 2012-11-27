@@ -33,73 +33,6 @@
 
   <script src='http://code.jquery.com/jquery-latest.js' type='text/javascript'></script>
 
-<script type='text/javascript'>
-//<![CDATA[
-// Lazy loading of youtube videos by MS-potilas 2011
-// Needs jQuery. Place code before </head>.
-// See http://jsfiddle.net/mUqNj/ and http://yabtb.blogspot.com/2011/12/lazy-load-youtube-videos.html
-//
-// Usage: 
-// <a class="youtube-lazy-link" style="width:560px;height:315px;" href="http://www.youtube.com/watch?v=3u8sEaohHMk">Sibelius</a>
-//  - style is optional, if omitted, default width 560 and height 315 pixels is used
-//
-$(document).ready(function() {
-  $("a.youtube-lazy-link").each(function(index) {
-    var embedparms = $(this).attr("href").split("/embed/")[1];
-    if(!embedparms) embedparms = $(this).attr("href").split("?v=")[1].replace(/\&/,'?');
-    var youid = embedparms.split("?")[0].split("#")[0];
-    var start = embedparms.match(/[#&]t=(\d+)s/);
-    if(start) start = start[1];
-    else {
-      start = embedparms.match(/[#&]t=(\d+)m(\d+)s/);
-      if(start) start = parseInt(start[1])*60+parseInt(start[2]);
-      else {
-        start = embedparms.match(/[?&]start=(\d+)/);
-        if(start) start = start[1];
-      }
-    }
-    embedparms = embedparms.split("#")[0];
-    if(start && embedparms.indexOf("start=") == -1)
-      embedparms += ((embedparms.indexOf("?")==-1) ? "?" : "&") + "start="+start;
-    if(embedparms.indexOf("showinfo=0") != -1)
-      $(this).html('');
-    $(this).prepend('<div style="height:'+(parseInt($(this).css("height"))-4)+'px;width:'+(parseInt($(this).css("width"))-4)+'px;" class="youtube-lazy-link-div"></div>&nbsp;')
-    $(this).css("background", "#000 url(http://i2.ytimg.com/vi/"+youid+"/0.jpg) center center no-repeat");
-    $(this).attr("id", youid);
-    $(this).attr("href", "http://www.youtube.com/watch?v="+youid+(start ? "#t="+start+"s" : ""));
-    var emu = 'http://www.youtube.com/embed/'+embedparms;
-    emu += ((emu.indexOf("?")==-1) ? "?" : "&") + "autoplay=1";
-    var videoFrame = '<iframe width="'+parseInt($(this).css("width"))+'" height="'+parseInt($(this).css("height"))+'" style="vertical-align:top;" src="'+emu+'" frameborder="0" allowfullscreen></iframe>';
-    $(this).attr("onclick", "$('#"+youid+"').replaceWith('"+videoFrame+"');return false;");
-  });
-})
-//]]>
-</script>
-<style type='text/css'>
-a.youtube-lazy-link {
-  vertical-align:top;
-  background:#555;
-  width:560px; height:315px;
-  background-size:cover;
-  text-decoration:none;
-  color:#DDD;
-  text-align:left;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  display:inline-block;
-}
-a.youtube-lazy-link:hover {
-  text-decoration:none;
-  color:#FFF;
-}
-.youtube-lazy-link-div {
-  border:2px solid #000;
-  background: url(http://lh4.googleusercontent.com/-QCeB6REIFlE/TuGUlY3N46I/AAAAAAAAAaI/9-urEUtpKcI/s800/youtube-play-button.png) center center no-repeat;
-  position:absolute;
-}
-.youtube-lazy-link-div:hover {
-  background: url(http://lh5.googleusercontent.com/-oBFjswrosz4/TuHqainRc3I/AAAAAAAAAbE/t3rMQuSJdLA/s800/youtube-play-button-hover.png) center center no-repeat;
-}
-</style>
 
 </head>
 
@@ -171,6 +104,10 @@ a.youtube-lazy-link:hover {
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/">Improve responsiveness of Youtube frames in  Jekyll and Octopress pages</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/">16 amazing things you can do with a Raspberry PI</a>
