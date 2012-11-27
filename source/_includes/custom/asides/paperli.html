@@ -1,0 +1,13 @@
+{% if site.paperli_user_name %}
+<section>
+  <h1>Newsstand</h1>
+<script src="http://widgets.paper.li/javascripts/init.js" type="text/javascript"></script>
+<script>
+  Paperli.PaperWidget.Show({
+      pid: '{{ site.paperli_user_name }}{% if site.paperli_paper_id %}/{{site.paperli_paper_id}}{% endif %}',
+      width: 200,
+      background: '#252525'
+  })
+</script>
+</section>
+{% endif %}
