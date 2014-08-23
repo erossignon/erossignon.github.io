@@ -12,7 +12,10 @@ source/_stash
 source/stylesheets/screen.css
 vendor
 node_modules
+Gemfile.lock
 *.swp
 .vagrant
 Vagrantfile
 _site
+*.bak
+

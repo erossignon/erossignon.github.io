@@ -3,8 +3,8 @@ layout: post
 title: "16 amazing things you can do with a Raspberry PI"
 date: 2012-11-22 11:18
 comments: true
-sharing: true
 categories:  [ RaspberryPi , Fun , embedded linux ]
+published: true 
 ---
 
 
