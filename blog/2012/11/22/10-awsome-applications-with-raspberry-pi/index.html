@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Gadz-Geek Blog</title>
+  <title>16 amazing things you can do with a Raspberry PI - Gadz-Geek Blog</title>
   <meta name="author" content="Etienne Rossignon">
 
   
-  <meta name="description" content="Benchmarking nodejs During the course of developing node-opcua, a javascript framework for OPCUA powered by
-nodejs, I came across the need to measure &hellip;">
+  <meta name="description" content="1. a print server Old printers can be refurbished into wireless printers using a Raspeberry PI. This makes it a very cheap solution. The Raspberry Pi &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ nodejs, I came across the need to measure &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://erossignon.github.com/">
+  <link rel="canonical" href="http://erossignon.github.com/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -76,670 +75,12 @@ nodejs, I came across the need to measure &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/08/22/benchmarking-the-performance-of-nodejs/">Benchmarking the Performance of Nodejs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-22T22:07:00+00:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>Benchmarking nodejs</h1>
-
-<p>During the course of developing <a href="http://node-opcua.github.io/">node-opcua</a>, a javascript framework for OPCUA powered by
-<a href="http://nodejs.org">nodejs</a>, I came across the need to measure the performance of nodejs on various hardware including
-ARM based nano-computers such as RasberryPi and BeagleBoneBlack.</p>
-
-<h3>Understanding the performance of the V8 engine used by nodejs.</h3>
-
-<p>Nodejs is using  Google V8 javascript engine which runs inside the Chrome web browser too.</p>
-
-<p>V8 code optimisation can lead to <a href="http://wingolog.org/archives/2011/06/10/v8-is-faster-than-gcc">astonishing good results</a>
-compared with C/C++ program, at least on a x86/x64 processor.</p>
-
-<p>But &#8230;
- * Does V8 inside nodejs perform as well as in Chrome ?
- * Is V8 performing well also on ARM CPU ?
- * How does nodejs running on a Raspberry compare  with nodejs running on an BeagleBoneBlack ?</p>
-
-<p> Here comes <strong><a href="https://code.google.com/p/octane-benchmark/">Octane 2</a></strong>, a <a href="http://thenextweb.com/google/2013/11/06/google-releases-version-2-0-javascript-benchmark-tool-octane-focus-reducing-latency">benchmark to score the performance of a javascript engine running inside a browser</a> designed by Google.</p>
-
-<p> You can run the benchmark inside your browser by  following this <a href="http://octane-benchmark.googlecode.com/svn/latest/index.html">link</a> and pressing the START button.</p>
-
-<p>Here are the results with Chrome and Firefox on my desktop:</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th> Computer       </th>
-<th> environment   </th>
-<th> Score </th>
-<th> Javascript Engine   </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td> Core I7 desktop </td>
-<td> Chrome (36.0.1985.143)      </td>
-<td> 26008 </td>
-<td> V8 v3.26(*)    |</td>
-</tr>
-<tr>
-<td></td>
-<td> Core I7 desktop </td>
-<td> Firefox 31      </td>
-<td> 15800 </td>
-<td> SpiderMonkey 31   |</td>
-</tr>
-<tr>
-<td></td>
-<td> VM Ubuntu 14.04(*)</td>
-<td> Chromium  (36.0.1985.125)    </td>
-<td> 8178  </td>
-<td>  V8 3.26      |</td>
-</tr>
-<tr>
-<td></td>
-<td> VM Ubuntu 14.04(*)</td>
-<td> Firefox 31   </td>
-<td> 5041  </td>
-<td>  SpiderMonkey 31      |</td>
-</tr>
-</tbody>
-</table>
-
-
-<p>(*) Ubuntu 14.04 running inside a VirtualBox machine on my Core I7 desktop.</p>
-
-<p>However, I needed the same benchmark but running on nodejs , without a GUI.
-Fortunately,  octane benches are pure javascript algorithms and can be easily ported to node.
-Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">benchmark-octane</a> a NPM module on github that serves as a very good starting point.</p>
-
-<p>With a few tweaks I created a <a href="https://github.com/erossignon/benchmark-octane">forked version of benchmark-octane</a> that suites my need.</p>
-
-<p>This version produces the same output as the browser version making results more comparable.</p>
-
-<p>This is the result of running <strong>benchmark-octane</strong> on various version of node:</p>
-
-<h3>Running Octane benchmark for nodejs:</h3>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th> Computer       </th>
-<th> environment   </th>
-<th> Score </th>
-<th> time   </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>Core I7 desktop </td>
-<td> nodejs 0.10.24</td>
-<td> 15800 </td>
-<td> 50s    |</td>
-</tr>
-<tr>
-<td></td>
-<td>Raspberry       </td>
-<td> nodejs 0.10.24</td>
-<td>   138 </td>
-<td> 2351 s |</td>
-</tr>
-<tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.08.21</td>
-<td>  5600 </td>
-<td> 74s    |</td>
-</tr>
-<tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.10.10</td>
-<td> 6550</td>
-<td> 62s     |</td>
-</tr>
-<tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.10.24</td>
-<td> 6472</td>
-<td> 62s   |</td>
-</tr>
-<tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.10.31</td>
-<td> (crashed in Mandreel)</td>
-<td>     |</td>
-</tr>
-<tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.11.13</td>
-<td>8050</td>
-<td> 50s    |</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/">How to Find the Version of the V8 My Nodejs Engine Is Using</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-22T21:58:00+00:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>how to find the version of the V8 my nodejs engine is using &#8220;?</h2>
-
-<ul>
-<li><p>if you can run nodejs, you can simple execute the following command
-<code>
-$ node -e "console.log(process.versions['node'],process.versions['v8'])"
-</code></p></li>
-<li><p>if you cannot run nodejs</p>
-
-<ol>
-<li>read the nodejs Release note at http://nodejs.org/changelog.html</li>
-<li>scan the file to detect when the V8 engine was upgrade and note the corresponding node version.</li>
-</ol>
-</li>
-</ul>
-
-
-<h3>nodejs versions and the matching V8 version</h3>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th>date       </th>
-<th> nodejs            </th>
-<th> V8 version </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>2014.08.19 </td>
-<td> 0.10.31           </td>
-<td> 3.14.5.9  |</td>
-</tr>
-<tr>
-<td></td>
-<td>2013.05.24 </td>
-<td> 0.10.8 (stable)   </td>
-<td> 3.14.5.9  |</td>
-</tr>
-<tr>
-<td></td>
-<td>13.03.11 </td>
-<td> 0.10.0 (stable)   </td>
-<td> 3.14.5  |</td>
-</tr>
-<tr>
-<td></td>
-<td>2013.03.01 </td>
-<td> 0.9.11            </td>
-<td> downgraded to v3.14.5    |</td>
-</tr>
-<tr>
-<td></td>
-<td>2013.02.19 </td>
-<td> 0.9.10            </td>
-<td> 3.15.11.15|</td>
-</tr>
-<tr>
-<td></td>
-<td>2013.01.24 </td>
-<td> 0.9.8             </td>
-<td> 3.15.11.10|</td>
-</tr>
-<tr>
-<td></td>
-<td>2013.01.18 </td>
-<td> 0.9.7             </td>
-<td> 3.15.11.7 |</td>
-</tr>
-<tr>
-<td></td>
-<td>2013.01.11 </td>
-<td> 0.9.6             </td>
-<td> 3.15.11.5 |</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.10.24 </td>
-<td> 0.9.3(unstable)             </td>
-<td> 3.13.7.4  |</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.10.25 </td>
-<td> 0.8.13            </td>
-<td> 3.11.10.25|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.09.11 </td>
-<td> 0.8.9             </td>
-<td> 3.11.10.22|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.08.22 </td>
-<td> 0.8.8             </td>
-<td> 3.11.10.19|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.07.25 </td>
-<td> 0.8.4             </td>
-<td> 3.11.10.17|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.07.19 </td>
-<td> 0.8.3             </td>
-<td> 3.11.10.15|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.06.29 </td>
-<td> 0.8.1             </td>
-<td> 3.11.10.12|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.06.25 </td>
-<td> 0.8.0(stable)         </td>
-<td> 3.11.10.10|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.05.28 </td>
-<td> 0.7.9             </td>
-<td> 3.11.1|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.01.23 </td>
-<td> 0.7.1             </td>
-<td> 3.8.8 |</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.01.07 </td>
-<td> 0.7 (unstable)    </td>
-<td> 3.8.6 |</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.04.30 </td>
-<td> 0.6.16            </td>
-<td> 3.6.6.25  |</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.03.02 </td>
-<td> 0.6.12           </td>
-<td> 3.6.6.24  |</td>
-</tr>
-</tbody>
-</table>
-
-
-<p>Finding the V8 engine of the current unstable release (V0.11) requires that you investigate the specific changelog file. For instance, looking at http://nodejs.org/dist/v0.11.13/docs/changelog.html</p>
-
-<ul>
-<li>here are the extracted versions:</li>
-</ul>
-
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th>date       </th>
-<th> nodejs            </th>
-<th> V8 version </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td> 2014.05.01 </td>
-<td> 0.11.13 (Unstable) </td>
-<td><a href="http://upstream-tracker.org/changelogs/v8/3.24.35.22/changelog.html">3.24.35.22</a> |</td>
-</tr>
-<tr>
-<td></td>
-<td> 2014.01.09 </td>
-<td> 0.11.11 (Unstable) </td>
-<td>3.22.24.19 |</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.12.31 </td>
-<td> 0.11.10 (Unstable) </td>
-<td>3.22.24.10 |</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.08.21 </td>
-<td> 0.11.7             </td>
-<td>3.20.17|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.08.21 </td>
-<td> 0.11.6             </td>
-<td>3.20.14.1|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.08.06 </td>
-<td> 0.11.5             </td>
-<td>3.20.11|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.07.12 </td>
-<td> 0.11.4             </td>
-<td>3.20.2|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.06.26 </td>
-<td> 0.11.3             </td>
-<td>3.19.13|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.05.13 </td>
-<td> 0.11.2             </td>
-<td>3.19.0|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.04.19 </td>
-<td> 0.11.1             </td>
-<td>3.18.0|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.04.19 </td>
-<td> 0.11.0             </td>
-<td>3.17.13|</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using/">How to Find the Version of the V8 My Chromium Browser Is Using</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-22T21:58:00+00:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>how to find the version of the V8 my Chromium browser is using ?</h2>
-
-<h3>if you want to find the V8 engine of the version of chrome you are currently running</h3>
-
-<ol>
-<li>visit the chrome://version/ page</li>
-<li>get the version of the &#8220;javascript&#8221; engine.</li>
-</ol>
-
-
-<h6>if don&#8217;t have a instance of Chrome running with the version you want to investigate</h6>
-
-<ol>
-<li>check the version of Chrome using the &#8220;About&#8221; command.
-For instance, let say it&#8217;s &#8216;36.0.1985.143&#8217; .</li>
-<li>navigate to:
- <code>http://src.chromium.org/viewvc/chrome/releases/[VERSION]/DEPS</code>
- ( replace [VERSION] with the actual string you found at step 1).
- In our example, this will be<br/>
- <a href="http://src.chromium.org/viewvc/chrome/releases/36.0.1985.143/DEPS">http://src.chromium.org/viewvc/chrome/releases/36.0.1985.143/DEPS</a>.
-This file,  maintained by the Chrome development team contains the description of all the dependencies and components used by Chrome, their location and their version number.</li>
-<li>Inside this file, search for the line containing <code>Var("v8")</code>.
-It will look like:
-<code>language
-Var("v8") + '/branches/3.26@22818',
-</code></li>
-<li>That&#8217;s it ! the corresponding V8 engine version is 3.26</li>
-</ol>
-
-
-<table>
-<thead>
-<tr>
-<th> </th>
-<th>-</th>
-<th> Chromium Version  </th>
-<th> V8 version </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> </td>
-<td>     </td>
-<td>36.0.1985.143 Windows     </td>
-<td> v3.26@22818      |</td>
-</tr>
-<tr>
-<td> </td>
-<td>     </td>
-<td>36.0.1985.125 Ubuntu 14.04 (283153) </td>
-<td> v3.26@21981 |</td>
-</tr>
-<tr>
-<td> </td>
-<td>     </td>
-<td>36.0.1985.57  IPhone    </td>
-<td> v3.26@21367 |</td>
-</tr>
-</tbody>
-</table>
-
-
-<p>This is explained in greater details in <a href="http://ariya.ofilabs.com/2012/02/find-v8-version-of-certain-chrome-release.html">this post</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/">Improve Responsiveness of Youtube Frames in Jekyll and Octopress Pages</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-25T00:38:00+00:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I am now using <a href="http://octopress.org">octopress</a> hosted in <a href="http://github.com">GitHub</a> for my blog.
-Octopress is based on <a href="https://github.com/mojombo/jekyll">Jekyll</a> which is a static site generator written in Ruby.
-Jekyll uses a combination of <a href="http://liquidmarkup.org/">Liquid</a> and <a href="http://old-wp.slekx.com/the-markdown-tutorial/">Markdown</a>
-, two markup engines that allow you to write your post almost in plain ascci without worrying about the HTML syntax.</p>
-
-<p>After installing a <a href="http://makokal.github.com/blog/2012/02/24/simple-jekyll-plugin-for-youtube-videos/">appropriated plugin</a>, I was able to insert youtube video frame using a Liquid sequence</p>
-
-<pre><code> {% youtube VIDEO_ID %}
-</code></pre>
-
-<p>Internaly the youtube tag triggers a little Liquid script that turns the video ID into the &lt;iframe> html element as required by the Youtube API.</p>
-
-<pre><code>&lt;iframe width="560" height="315"  
-        src="http://www.youtube.com/embed/q_NvDTZIaS4" 
-        frameborder="0" allowfullscreen &gt;&lt;/iframe&gt;
-</code></pre>
-
-<p>and produces :</p>
-
-<iframe width="560" height="315" src="http://www.youtube.com/embed/q_NvDTZIaS4" frameborder="0" allowfullscreen></iframe>
-
-
-<p>One of my first post included a lot of embedded youtube video and it was very convenient.</p>
-
-<p>However, with many videos includes the page takes a very long time to load, and the browser even freezes while the &lt;iframe> s were beeing installed.
-(not suprisingly many article,
-<a href="http://www.stevesouders.com/blog/2009/06/03/using-iframes-sparingly/">such as this one</a>
-recommand to use iframe sparingly for this very reason)</p>
-
-<p>Searching a little bit deeper, I stumbled across an article from <a href="http://yabtb.blogspot.fr/2011/12/lazy-load-youtube-videos.html">yabtb</a> explaining how overcome this problem, using a technique called <em>lazy loading</em>.</p>
-
-<p>In essence, lazy loading consist of replacing the &lt;iframe> with a static image  (using the &lt;img> tag) and a little bit of javascript to replace the &lt;img> tag with the proper &lt;iframe> tag at runtime when the reader clicks on the image.</p>
-
-<p>I then decided to improve the <em>youtube</em> <em>Liquid plugin</em> to use this technique and publish the new plugin  &lt;[code on github : <a href="https://github.com/erossignon/jekyll-youtube-lazyloading">https://github.com/erossignon/jekyll-youtube-lazyloading</a></p>
-
-<p>you can see the result of here :</p>
-
-<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('q_NvDTZIaS4');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/q_NvDTZIaS4&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
-<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/q_NvDTZIaS4/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=q_NvDTZIaS4" id="q_NvDTZIaS4" onclick="return false;">
-<div class="youtube-lazy-link-div"></div>
-<div class="youtube-lazy-link-info">Raspberry Pi - How to use the GPIO</div>
-</a>
-<div class="video-info" >http://goo.gl/mdVSm
-http://pypi.python.org/pypi/RPi.GPIO
-http://lwk.mjhosting.co.uk/?p=343
-Raspberry Pi
-How to use the GPIO
-www.raspberrypi.org</div>
-</div>
-
-
-<h3>Credits</h3>
-
-<ul>
-<li><a href="http://amobil.se/2011/11/responsive-embeds/">andmag</a></li>
-<li><a href="http://www.portwaypoint.co.uk/jekyll-youtube-liquid-template-tag-gist/">portwaypoint</a></li>
-<li><a href="http://yabtb.blogspot.fr/2011/12/lazy-load-youtube-videos.html">yatb</a></li>
-<li><a href="https://github.com/optikfluffel/octopress-responsive-video-embed">optikfluffel</a></li>
-<li><a href="http://stackoverflow.com/questions/843680/how-to-replace-dom-element-in-place-using-javascript?answertab=active#tab-top">stackoverflow</a></li>
-<li>http://net.tutsplus.com/tutorials/other/building-static-sites-with-jekyll/</li>
-<li>http://five.squarespace.com/display/ShowHelp?section=Markdown</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/">16 Amazing Things You Can Do With a Raspberry PI</a></h1>
+      <h1 class="entry-title">16 Amazing Things You Can Do With a Raspberry PI</h1>
     
     
       <p class="meta">
@@ -762,7 +103,7 @@ www.raspberrypi.org</div>
   </header>
 
 
-  <div class="entry-content"><h2>1. a print server</h2>
+<div class="entry-content"><h2>1. a print server</h2>
 
 <p>Old printers can be refurbished into wireless printers using a Raspeberry PI. This makes it a very cheap solution.</p>
 
@@ -1017,18 +358,65 @@ http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.sht
 </ul>
 
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Etienne Rossignon</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2012-11-22T11:18:00+00:00" pubdate data-updated="true">Nov 22<span>nd</span>, 2012</time>
+      
+
+<span class="categories">
   
-  <div class="pagination">
+    <a class='category' href='/blog/categories/fun/'>Fun</a>, <a class='category' href='/blog/categories/raspberrypi/'>RaspberryPi</a>, <a class='category' href='/blog/categories/embedded-linux/'>embedded linux</a>
+  
+</span>
+
+
+    </p>
     
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://erossignon.github.com/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/" data-via="gadz_er" data-counturl="http://erossignon.github.com/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/" >Tweet</a>
+  
+  
+  
 </div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/" title="Next Post: Improve responsiveness of Youtube frames in  Jekyll and Octopress pages">Improve responsiveness of Youtube frames in  Jekyll and Octopress pages &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     
@@ -1065,7 +453,7 @@ http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.sht
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/erossignon">@erossignon</a> on GitHub
@@ -1095,7 +483,7 @@ http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.sht
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -1135,6 +523,7 @@ http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.sht
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -1149,7 +538,10 @@ http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.sht
       var disqus_shortname = 'erossignongithubcom';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://erossignon.github.com/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/';
+        var disqus_url = 'http://erossignon.github.com/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

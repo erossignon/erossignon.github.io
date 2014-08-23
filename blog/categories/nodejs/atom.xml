@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: nodejs | Gadz-Geek Blog]]></title>
+  <link href="http://erossignon.github.com/blog/categories/nodejs/atom.xml" rel="self"/>
+  <link href="http://erossignon.github.com/"/>
+  <updated>2014-08-22T22:12:14+00:00</updated>
+  <id>http://erossignon.github.com/</id>
+  <author>
+    <name><![CDATA[Etienne Rossignon]]></name>
+    <email><![CDATA[etienne.rossignon@gadz.org]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[benchmarking the performance of nodejs]]></title>
+    <link href="http://erossignon.github.com/blog/2014/08/22/benchmarking-the-performance-of-nodejs/"/>
+    <updated>2014-08-22T22:07:00+00:00</updated>
+    <id>http://erossignon.github.com/blog/2014/08/22/benchmarking-the-performance-of-nodejs</id>
+    <content type="html"><![CDATA[<h1>Benchmarking nodejs</h1>
+
+<p>During the course of developing <a href="http://node-opcua.github.io/">node-opcua</a>, a javascript framework for OPCUA powered by
+<a href="http://nodejs.org">nodejs</a>, I came across the need to measure the performance of nodejs on various hardware including
+ARM based nano-computers such as RasberryPi and BeagleBoneBlack.</p>
+
+<h3>Understanding the performance of the V8 engine used by nodejs.</h3>
+
+<p>Nodejs is using  Google V8 javascript engine which runs inside the Chrome web browser too.</p>
+
+<p>V8 code optimisation can lead to <a href="http://wingolog.org/archives/2011/06/10/v8-is-faster-than-gcc">astonishing good results</a>
+compared with C/C++ program, at least on a x86/x64 processor.</p>
+
+<p>But ...
+ * Does V8 inside nodejs perform as well as in Chrome ?
+ * Is V8 performing well also on ARM CPU ?
+ * How does nodejs running on a Raspberry compare  with nodejs running on an BeagleBoneBlack ?</p>
+
+<p> Here comes <strong><a href="https://code.google.com/p/octane-benchmark/">Octane 2</a></strong>, a <a href="http://thenextweb.com/google/2013/11/06/google-releases-version-2-0-javascript-benchmark-tool-octane-focus-reducing-latency">benchmark to score the performance of a javascript engine running inside a browser</a> designed by Google.</p>
+
+<p> You can run the benchmark inside your browser by  following this <a href="http://octane-benchmark.googlecode.com/svn/latest/index.html">link</a> and pressing the START button.</p>
+
+<p>Here are the results with Chrome and Firefox on my desktop:</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th> Computer       </th>
+<th> environment   </th>
+<th> Score </th>
+<th> Javascript Engine   </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td> Core I7 desktop </td>
+<td> Chrome (36.0.1985.143)      </td>
+<td> 26008 </td>
+<td> V8 v3.26(*)    |</td>
+</tr>
+<tr>
+<td></td>
+<td> Core I7 desktop </td>
+<td> Firefox 31      </td>
+<td> 15800 </td>
+<td> SpiderMonkey 31   |</td>
+</tr>
+<tr>
+<td></td>
+<td> VM Ubuntu 14.04(*)</td>
+<td> Chromium  (36.0.1985.125)    </td>
+<td> 8178  </td>
+<td>  V8 3.26      |</td>
+</tr>
+<tr>
+<td></td>
+<td> VM Ubuntu 14.04(*)</td>
+<td> Firefox 31   </td>
+<td> 5041  </td>
+<td>  SpiderMonkey 31      |</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>(*) Ubuntu 14.04 running inside a VirtualBox machine on my Core I7 desktop.</p>
+
+<p>However, I needed the same benchmark but running on nodejs , without a GUI.
+Fortunately,  octane benches are pure javascript algorithms and can be easily ported to node.
+Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">benchmark-octane</a> a NPM module on github that serves as a very good starting point.</p>
+
+<p>With a few tweaks I created a <a href="https://github.com/erossignon/benchmark-octane">forked version of benchmark-octane</a> that suites my need.</p>
+
+<p>This version produces the same output as the browser version making results more comparable.</p>
+
+<p>This is the result of running <strong>benchmark-octane</strong> on various version of node:</p>
+
+<h3>Running Octane benchmark for nodejs:</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th> Computer       </th>
+<th> environment   </th>
+<th> Score </th>
+<th> time   </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Core I7 desktop </td>
+<td> nodejs 0.10.24</td>
+<td> 15800 </td>
+<td> 50s    |</td>
+</tr>
+<tr>
+<td></td>
+<td>Raspberry       </td>
+<td> nodejs 0.10.24</td>
+<td>   138 </td>
+<td> 2351 s |</td>
+</tr>
+<tr>
+<td></td>
+<td>VM Ubuntu 14.04 </td>
+<td> nodejs 0.08.21</td>
+<td>  5600 </td>
+<td> 74s    |</td>
+</tr>
+<tr>
+<td></td>
+<td>VM Ubuntu 14.04 </td>
+<td> nodejs 0.10.10</td>
+<td> 6550</td>
+<td> 62s     |</td>
+</tr>
+<tr>
+<td></td>
+<td>VM Ubuntu 14.04 </td>
+<td> nodejs 0.10.24</td>
+<td> 6472</td>
+<td> 62s   |</td>
+</tr>
+<tr>
+<td></td>
+<td>VM Ubuntu 14.04 </td>
+<td> nodejs 0.10.31</td>
+<td> (crashed in Mandreel)</td>
+<td>     |</td>
+</tr>
+<tr>
+<td></td>
+<td>VM Ubuntu 14.04 </td>
+<td> nodejs 0.11.13</td>
+<td>8050</td>
+<td> 50s    |</td>
+</tr>
+</tbody>
+</table>
+
+]]></content>
+  </entry>
+  
+</feed>

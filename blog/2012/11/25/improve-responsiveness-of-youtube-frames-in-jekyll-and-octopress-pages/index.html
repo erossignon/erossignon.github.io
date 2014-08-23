@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Improve responsiveness of Youtube frames in  Jekyll and Octopress pages - Gadz-Geek Blog</title>
+  <meta name="author" content="Etienne Rossignon">
+
+  
+  <meta name="description" content="I am now using octopress hosted in GitHub for my blog.
+Octopress is based on Jekyll which is a static site generator written in Ruby.
+Jekyll uses a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://erossignon.github.com/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Gadz-Geek Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25438821-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  Included file 'youtubelazyloader.html' not found in _includes directory
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Gadz-Geek Blog</a></h1>
+  
+    <h2>The blog of a Gadz Geek.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:erossignon.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Improve Responsiveness of Youtube Frames in Jekyll and Octopress Pages</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-25T00:38:00+00:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I am now using <a href="http://octopress.org">octopress</a> hosted in <a href="http://github.com">GitHub</a> for my blog.
+Octopress is based on <a href="https://github.com/mojombo/jekyll">Jekyll</a> which is a static site generator written in Ruby.
+Jekyll uses a combination of <a href="http://liquidmarkup.org/">Liquid</a> and <a href="http://old-wp.slekx.com/the-markdown-tutorial/">Markdown</a>
+, two markup engines that allow you to write your post almost in plain ascci without worrying about the HTML syntax.</p>
+
+<p>After installing a <a href="http://makokal.github.com/blog/2012/02/24/simple-jekyll-plugin-for-youtube-videos/">appropriated plugin</a>, I was able to insert youtube video frame using a Liquid sequence</p>
+
+<pre><code> {% youtube VIDEO_ID %}
+</code></pre>
+
+<p>Internaly the youtube tag triggers a little Liquid script that turns the video ID into the &lt;iframe> html element as required by the Youtube API.</p>
+
+<pre><code>&lt;iframe width="560" height="315"  
+        src="http://www.youtube.com/embed/q_NvDTZIaS4" 
+        frameborder="0" allowfullscreen &gt;&lt;/iframe&gt;
+</code></pre>
+
+<p>and produces :</p>
+
+<iframe width="560" height="315" src="http://www.youtube.com/embed/q_NvDTZIaS4" frameborder="0" allowfullscreen></iframe>
+
+
+<p>One of my first post included a lot of embedded youtube video and it was very convenient.</p>
+
+<p>However, with many videos includes the page takes a very long time to load, and the browser even freezes while the &lt;iframe> s were beeing installed.
+(not suprisingly many article,
+<a href="http://www.stevesouders.com/blog/2009/06/03/using-iframes-sparingly/">such as this one</a>
+recommand to use iframe sparingly for this very reason)</p>
+
+<p>Searching a little bit deeper, I stumbled across an article from <a href="http://yabtb.blogspot.fr/2011/12/lazy-load-youtube-videos.html">yabtb</a> explaining how overcome this problem, using a technique called <em>lazy loading</em>.</p>
+
+<p>In essence, lazy loading consist of replacing the &lt;iframe> with a static image  (using the &lt;img> tag) and a little bit of javascript to replace the &lt;img> tag with the proper &lt;iframe> tag at runtime when the reader clicks on the image.</p>
+
+<p>I then decided to improve the <em>youtube</em> <em>Liquid plugin</em> to use this technique and publish the new plugin  &lt;[code on github : <a href="https://github.com/erossignon/jekyll-youtube-lazyloading">https://github.com/erossignon/jekyll-youtube-lazyloading</a></p>
+
+<p>you can see the result of here :</p>
+
+<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('q_NvDTZIaS4');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/q_NvDTZIaS4&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
+<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/q_NvDTZIaS4/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=q_NvDTZIaS4" id="q_NvDTZIaS4" onclick="return false;">
+<div class="youtube-lazy-link-div"></div>
+<div class="youtube-lazy-link-info">Raspberry Pi - How to use the GPIO</div>
+</a>
+<div class="video-info" >http://goo.gl/mdVSm
+http://pypi.python.org/pypi/RPi.GPIO
+http://lwk.mjhosting.co.uk/?p=343
+Raspberry Pi
+How to use the GPIO
+www.raspberrypi.org</div>
+</div>
+
+
+<h3>Credits</h3>
+
+<ul>
+<li><a href="http://amobil.se/2011/11/responsive-embeds/">andmag</a></li>
+<li><a href="http://www.portwaypoint.co.uk/jekyll-youtube-liquid-template-tag-gist/">portwaypoint</a></li>
+<li><a href="http://yabtb.blogspot.fr/2011/12/lazy-load-youtube-videos.html">yatb</a></li>
+<li><a href="https://github.com/optikfluffel/octopress-responsive-video-embed">optikfluffel</a></li>
+<li><a href="http://stackoverflow.com/questions/843680/how-to-replace-dom-element-in-place-using-javascript?answertab=active#tab-top">stackoverflow</a></li>
+<li>http://net.tutsplus.com/tutorials/other/building-static-sites-with-jekyll/</li>
+<li>http://five.squarespace.com/display/ShowHelp?section=Markdown</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Etienne Rossignon</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-25T00:38:00+00:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://erossignon.github.com/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/" data-via="gadz_er" data-counturl="http://erossignon.github.com/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/" title="Previous Post: 16 amazing things you can do with a Raspberry PI">&laquo; 16 amazing things you can do with a Raspberry PI</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using/" title="Next Post: how to find the version of the V8 my Chromium browser is using">how to find the version of the V8 my Chromium browser is using &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+<section>
+  <img src="http://gravatar.com/avatar/5abbca8ac694ba9aff5381defa65e0e5" alt="Gravatar image" title="Gravatar Image" />
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/08/22/benchmarking-the-performance-of-nodejs/">benchmarking the performance of nodejs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/">how to find the version of the V8 my nodejs engine is using </a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using/">how to find the version of the V8 my Chromium browser is using</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/">Improve responsiveness of Youtube frames in  Jekyll and Octopress pages</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/">16 amazing things you can do with a Raspberry PI</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/erossignon">@erossignon</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'erossignon',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("gadz_er", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/gadz_er" class="twitter-follow-button" data-show-count="false">Follow @gadz_er</a>
+  
+</section>
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/er_gadz?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/er_gadz">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+
+
+<section>
+  <h1>Newsstand</h1>
+<script src="http://widgets.paper.li/javascripts/init.js" type="text/javascript"></script>
+<script>
+  Paperli.PaperWidget.Show({
+      pid: 'gadz_er/1324366784',
+      width: 200,
+      background: '#252525'
+  })
+</script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Etienne Rossignon -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'erossignongithubcom';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://erossignon.github.com/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/';
+        var disqus_url = 'http://erossignon.github.com/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
