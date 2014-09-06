@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Gadz-Geek Blog]]></title>
-  <link href="http://erossignon.github.com/atom.xml" rel="self"/>
-  <link href="http://erossignon.github.com/"/>
-  <updated>2014-08-22T22:12:14+00:00</updated>
-  <id>http://erossignon.github.com/</id>
+  <link href="http://erossignon.github.io/atom.xml" rel="self"/>
+  <link href="http://erossignon.github.io/"/>
+  <updated>2014-09-06T10:51:49+02:00</updated>
+  <id>http://erossignon.github.io/</id>
   <author>
     <name><![CDATA[Etienne Rossignon]]></name>
     <email><![CDATA[etienne.rossignon@gadz.org]]></email>
@@ -14,15 +14,15 @@
 
   
   <entry>
-    <title type="html"><![CDATA[benchmarking the performance of nodejs]]></title>
-    <link href="http://erossignon.github.com/blog/2014/08/22/benchmarking-the-performance-of-nodejs/"/>
-    <updated>2014-08-22T22:07:00+00:00</updated>
-    <id>http://erossignon.github.com/blog/2014/08/22/benchmarking-the-performance-of-nodejs</id>
-    <content type="html"><![CDATA[<h1>Benchmarking nodejs</h1>
-
-<p>During the course of developing <a href="http://node-opcua.github.io/">node-opcua</a>, a javascript framework for OPCUA powered by
+    <title type="html"><![CDATA[Benchmarking the Performance of Nodejs]]></title>
+    <link href="http://erossignon.github.io/blog/2014/08/22/benchmarking-the-performance-of-nodejs/"/>
+    <updated>2014-08-22T22:07:00+02:00</updated>
+    <id>http://erossignon.github.io/blog/2014/08/22/benchmarking-the-performance-of-nodejs</id>
+    <content type="html"><![CDATA[<p>During the course of developing <a href="http://node-opcua.github.io/">node-opcua</a>, a javascript framework for OPCUA powered by
 <a href="http://nodejs.org">nodejs</a>, I came across the need to measure the performance of nodejs on various hardware including
 ARM based nano-computers such as RasberryPi and BeagleBoneBlack.</p>
+
+<!-- more -->
 
 <h3>Understanding the performance of the V8 engine used by nodejs.</h3>
 
@@ -31,59 +31,53 @@ ARM based nano-computers such as RasberryPi and BeagleBoneBlack.</p>
 <p>V8 code optimisation can lead to <a href="http://wingolog.org/archives/2011/06/10/v8-is-faster-than-gcc">astonishing good results</a>
 compared with C/C++ program, at least on a x86/x64 processor.</p>
 
-<p>But &#8230;
- * Does V8 inside nodejs perform as well as in Chrome ?
- * Is V8 performing well also on ARM CPU ?
- * How does nodejs running on a Raspberry compare  with nodejs running on an BeagleBoneBlack ?</p>
+<p>But &#8230;</p>
 
-<p> Here comes <strong><a href="https://code.google.com/p/octane-benchmark/">Octane 2</a></strong>, a <a href="http://thenextweb.com/google/2013/11/06/google-releases-version-2-0-javascript-benchmark-tool-octane-focus-reducing-latency">benchmark to score the performance of a javascript engine running inside a browser</a> designed by Google.</p>
+<ul>
+<li>Does V8 inside nodejs perform as well as in Chrome ? </li>
+<li>Is V8 performing well also on ARM CPU ?</li>
+<li>How does nodejs running on a Raspberry compare  with nodejs running on an BeagleBoneBlack ? </li>
+</ul>
 
-<p> You can run the benchmark inside your browser by  following this <a href="http://octane-benchmark.googlecode.com/svn/latest/index.html">link</a> and pressing the START button.</p>
+<p>Here comes <strong><a href="https://code.google.com/p/octane-benchmark/">Octane 2</a></strong>, a <a href="http://thenextweb.com/google/2013/11/06/google-releases-version-2-0-javascript-benchmark-tool-octane-focus-reducing-latency">benchmark to score the performance of a javascript engine running inside a browser</a> designed by Google.</p>
+
+<p>You can run the benchmark inside your browser by  following this <a href="http://octane-benchmark.googlecode.com/svn/latest/index.html">link</a> and pressing the START button.</p>
 
 <p>Here are the results with Chrome and Firefox on my desktop:</p>
 
-<table>
-<thead>
+<table><thead>
 <tr>
-<th></th>
-<th> Computer       </th>
-<th> environment   </th>
-<th> Score </th>
-<th> Javascript Engine   </th>
+<th>Computer</th>
+<th>environment</th>
+<th style="text-align: right">Score</th>
+<th>Javascript Engine</th>
 </tr>
-</thead>
-<tbody>
+</thead><tbody>
 <tr>
-<td></td>
-<td> Core I7 desktop </td>
-<td> Chrome (36.0.1985.143)      </td>
-<td> 26008 </td>
-<td> V8 v3.26(*)    |</td>
+<td>Core I7 desktop</td>
+<td>Chrome (36.0.1985.143)</td>
+<td style="text-align: right">26008</td>
+<td>V8 v3.26(*)</td>
 </tr>
 <tr>
-<td></td>
-<td> Core I7 desktop </td>
-<td> Firefox 31      </td>
-<td> 15800 </td>
-<td> SpiderMonkey 31   |</td>
+<td>Core I7 desktop</td>
+<td>Firefox 31</td>
+<td style="text-align: right">15800</td>
+<td>SpiderMonkey 31</td>
 </tr>
 <tr>
-<td></td>
-<td> VM Ubuntu 14.04(*)</td>
-<td> Chromium  (36.0.1985.125)    </td>
-<td> 8178  </td>
-<td>  V8 3.26      |</td>
+<td>VM Ubuntu 14.04(*)</td>
+<td>Chromium  (36.0.1985.125)</td>
+<td style="text-align: right">8178</td>
+<td>V8 3.26</td>
 </tr>
 <tr>
-<td></td>
-<td> VM Ubuntu 14.04(*)</td>
-<td> Firefox 31   </td>
-<td> 5041  </td>
-<td>  SpiderMonkey 31      |</td>
+<td>VM Ubuntu 14.04(*)</td>
+<td>Firefox 31</td>
+<td style="text-align: right">5041</td>
+<td>SpiderMonkey 31</td>
 </tr>
-</tbody>
-</table>
-
+</tbody></table>
 
 <p>(*) Ubuntu 14.04 running inside a VirtualBox machine on my Core I7 desktop.</p>
 
@@ -99,435 +93,388 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
 
 <h3>Running Octane benchmark for nodejs:</h3>
 
-<table>
-<thead>
+<table><thead>
 <tr>
-<th></th>
-<th> Computer       </th>
-<th> environment   </th>
-<th> Score </th>
-<th> time   </th>
+<th style="text-align: left">Computer</th>
+<th style="text-align: left">environment</th>
+<th style="text-align: right">Score</th>
+<th style="text-align: right">time</th>
 </tr>
-</thead>
-<tbody>
+</thead><tbody>
 <tr>
-<td></td>
-<td>Core I7 desktop </td>
-<td> nodejs 0.10.24</td>
-<td> 15800 </td>
-<td> 50s    |</td>
+<td style="text-align: left">Core I7 desktop</td>
+<td style="text-align: left">nodejs 0.10.24</td>
+<td style="text-align: right">15800</td>
+<td style="text-align: right">50s</td>
 </tr>
 <tr>
-<td></td>
-<td>Raspberry       </td>
-<td> nodejs 0.10.24</td>
-<td>   138 </td>
-<td> 2351 s |</td>
+<td style="text-align: left">Raspberry</td>
+<td style="text-align: left">nodejs 0.10.24</td>
+<td style="text-align: right">138</td>
+<td style="text-align: right">2351 s</td>
 </tr>
 <tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.08.21</td>
-<td>  5600 </td>
-<td> 74s    |</td>
+<td style="text-align: left">VM Ubuntu 14.04</td>
+<td style="text-align: left">nodejs 0.08.21</td>
+<td style="text-align: right">5600</td>
+<td style="text-align: right">74s</td>
 </tr>
 <tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.10.10</td>
-<td> 6550</td>
-<td> 62s     |</td>
+<td style="text-align: left">VM Ubuntu 14.04</td>
+<td style="text-align: left">nodejs 0.10.10</td>
+<td style="text-align: right">6550</td>
+<td style="text-align: right">62s</td>
 </tr>
 <tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.10.24</td>
-<td> 6472</td>
-<td> 62s   |</td>
+<td style="text-align: left">VM Ubuntu 14.04</td>
+<td style="text-align: left">nodejs 0.10.24</td>
+<td style="text-align: right">6472</td>
+<td style="text-align: right">62s</td>
 </tr>
 <tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.10.31</td>
-<td> (crashed in Mandreel)</td>
-<td>     |</td>
+<td style="text-align: left">VM Ubuntu 14.04</td>
+<td style="text-align: left">nodejs 0.10.31</td>
+<td style="text-align: right">(crashed in Mandreel)</td>
+<td style="text-align: right"></td>
 </tr>
 <tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.11.13</td>
-<td>8050</td>
-<td> 50s    |</td>
+<td style="text-align: left">VM Ubuntu 14.04</td>
+<td style="text-align: left">nodejs 0.11.13</td>
+<td style="text-align: right">8050</td>
+<td style="text-align: right">50s</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 
+<h2>running NodeJS Benchmark</h2>
+
+<p>Follow this instruction to run <a href="https://github.com/erossignon/benchmark-octane">Benchmark-octane</a> </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone https://github.com/erossignon/benchmark-octane
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>benchmark-octane
+</span><span class='line'><span class="nv">$ </span>npm install
+</span><span class='line'><span class="nv">$ </span>node run.js
+</span></code></pre></td></tr></table></div></figure>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[how to find the version of the V8 my nodejs engine is using ]]></title>
-    <link href="http://erossignon.github.com/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/"/>
-    <updated>2014-08-22T21:58:00+00:00</updated>
-    <id>http://erossignon.github.com/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using</id>
-    <content type="html"><![CDATA[<h2>how to find the version of the V8 my nodejs engine is using &#8220;?</h2>
+    <title type="html"><![CDATA[What V8 Version Is My Nodejs Running ?]]></title>
+    <link href="http://erossignon.github.io/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/"/>
+    <updated>2014-08-22T21:58:00+02:00</updated>
+    <id>http://erossignon.github.io/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using</id>
+    <content type="html"><![CDATA[<p>Here are two methods that can be use to find the version of the V8 engine that a particular version of node is using.</p>
 
-<ul>
-<li><p>if you can run nodejs, you can simple execute the following command
-<code>
-$ node -e "console.log(process.versions['node'],process.versions['v8'])"
-</code></p></li>
-<li><p>if you cannot run nodejs</p>
+<!-- more -->
+
+<h3>if you can run nodejs</h3>
+
+<p>To display the V8 version, you can simple execute the following command:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  $ node -e &quot;console.log(process.versions[&#39;node&#39;],process.versions[&#39;v8&#39;])&quot;
+</code></pre></div>
+<h3>if you cannot run nodejs</h3>
 
 <ol>
 <li>read the nodejs Release note at http://nodejs.org/changelog.html</li>
 <li>scan the file to detect when the V8 engine was upgrade and note the corresponding node version.</li>
 </ol>
-</li>
-</ul>
-
 
 <h3>nodejs versions and the matching V8 version</h3>
 
-<table>
-<thead>
+<table><thead>
 <tr>
-<th></th>
-<th>date       </th>
-<th> nodejs            </th>
-<th> V8 version </th>
+<th>date</th>
+<th>nodejs</th>
+<th>V8 version</th>
 </tr>
-</thead>
-<tbody>
+</thead><tbody>
 <tr>
-<td></td>
-<td>2014.08.19 </td>
-<td> 0.10.31           </td>
-<td> 3.14.5.9  |</td>
+<td>2014.08.19</td>
+<td>0.10.31</td>
+<td>3.14.5.9</td>
 </tr>
 <tr>
-<td></td>
-<td>2013.05.24 </td>
-<td> 0.10.8 (stable)   </td>
-<td> 3.14.5.9  |</td>
+<td>2013.05.24</td>
+<td>0.10.8</td>
+<td>3.14.5.9</td>
 </tr>
 <tr>
-<td></td>
-<td>13.03.11 </td>
-<td> 0.10.0 (stable)   </td>
-<td> 3.14.5  |</td>
+<td>13.03.11</td>
+<td>0.10.0</td>
+<td>3.14.5</td>
 </tr>
 <tr>
-<td></td>
-<td>2013.03.01 </td>
-<td> 0.9.11            </td>
-<td> downgraded to v3.14.5    |</td>
+<td>2013.03.01</td>
+<td>0.9.11</td>
+<td>downgraded to v3.14.5</td>
 </tr>
 <tr>
-<td></td>
-<td>2013.02.19 </td>
-<td> 0.9.10            </td>
-<td> 3.15.11.15|</td>
+<td>2013.02.19</td>
+<td>0.9.10</td>
+<td>3.15.11.15</td>
 </tr>
 <tr>
-<td></td>
-<td>2013.01.24 </td>
-<td> 0.9.8             </td>
-<td> 3.15.11.10|</td>
+<td>2013.01.24</td>
+<td>0.9.8</td>
+<td>3.15.11.10</td>
 </tr>
 <tr>
-<td></td>
-<td>2013.01.18 </td>
-<td> 0.9.7             </td>
-<td> 3.15.11.7 |</td>
+<td>2013.01.18</td>
+<td>0.9.7</td>
+<td>3.15.11.7</td>
 </tr>
 <tr>
-<td></td>
-<td>2013.01.11 </td>
-<td> 0.9.6             </td>
-<td> 3.15.11.5 |</td>
+<td>2013.01.11</td>
+<td>0.9.6</td>
+<td>3.15.11.5</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.10.24 </td>
-<td> 0.9.3(unstable)             </td>
-<td> 3.13.7.4  |</td>
+<td>2012.10.24</td>
+<td>0.9.3</td>
+<td>3.13.7.4</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.10.25 </td>
-<td> 0.8.13            </td>
-<td> 3.11.10.25|</td>
+<td>2012.10.25</td>
+<td>0.8.13</td>
+<td>3.11.10.25</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.09.11 </td>
-<td> 0.8.9             </td>
-<td> 3.11.10.22|</td>
+<td>2012.09.11</td>
+<td>0.8.9</td>
+<td>3.11.10.22</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.08.22 </td>
-<td> 0.8.8             </td>
-<td> 3.11.10.19|</td>
+<td>2012.08.22</td>
+<td>0.8.8</td>
+<td>3.11.10.19</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.07.25 </td>
-<td> 0.8.4             </td>
-<td> 3.11.10.17|</td>
+<td>2012.07.25</td>
+<td>0.8.4</td>
+<td>3.11.10.17</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.07.19 </td>
-<td> 0.8.3             </td>
-<td> 3.11.10.15|</td>
+<td>2012.07.19</td>
+<td>0.8.3</td>
+<td>3.11.10.15</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.06.29 </td>
-<td> 0.8.1             </td>
-<td> 3.11.10.12|</td>
+<td>2012.06.29</td>
+<td>0.8.1</td>
+<td>3.11.10.12</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.06.25 </td>
-<td> 0.8.0(stable)         </td>
-<td> 3.11.10.10|</td>
+<td>2012.06.25</td>
+<td>0.8.0</td>
+<td>3.11.10.10</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.05.28 </td>
-<td> 0.7.9             </td>
-<td> 3.11.1|</td>
+<td>2012.05.28</td>
+<td>0.7.9</td>
+<td>3.11.1</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.01.23 </td>
-<td> 0.7.1             </td>
-<td> 3.8.8 |</td>
+<td>2012.01.23</td>
+<td>0.7.1</td>
+<td>3.8.8</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.01.07 </td>
-<td> 0.7 (unstable)    </td>
-<td> 3.8.6 |</td>
+<td>2012.01.07</td>
+<td>0.7</td>
+<td>3.8.6</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.04.30 </td>
-<td> 0.6.16            </td>
-<td> 3.6.6.25  |</td>
+<td>2012.04.30</td>
+<td>0.6.16</td>
+<td>3.6.6.25</td>
 </tr>
 <tr>
-<td></td>
-<td>2012.03.02 </td>
-<td> 0.6.12           </td>
-<td> 3.6.6.24  |</td>
+<td>2012.03.02</td>
+<td>0.6.12</td>
+<td>3.6.6.24</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 
-
-<p>Finding the V8 engine of the current unstable release (V0.11) requires that you investigate the specific changelog file. For instance, looking at http://nodejs.org/dist/v0.11.13/docs/changelog.html</p>
+<p>Finding the V8 engine of the current unstable release (V0.11) requires that you investigate the specific changelog file. 
+For instance, looking at http://nodejs.org/dist/v0.11.13/docs/changelog.html </p>
 
 <ul>
-<li>here are the extracted versions:</li>
+<li>here are the extracted versions:<br></li>
 </ul>
 
-
-<table>
-<thead>
+<table><thead>
 <tr>
-<th></th>
-<th>date       </th>
-<th> nodejs            </th>
-<th> V8 version </th>
+<th>date</th>
+<th>nodejs</th>
+<th>V8 version</th>
 </tr>
-</thead>
-<tbody>
+</thead><tbody>
 <tr>
-<td></td>
-<td> 2014.05.01 </td>
-<td> 0.11.13 (Unstable) </td>
-<td><a href="http://upstream-tracker.org/changelogs/v8/3.24.35.22/changelog.html">3.24.35.22</a> |</td>
+<td>2014.05.01</td>
+<td>0.11.13</td>
+<td><a href="http://upstream-tracker.org/changelogs/v8/3.24.35.22/changelog.html">3.24.35.22</a></td>
 </tr>
 <tr>
-<td></td>
-<td> 2014.01.09 </td>
-<td> 0.11.11 (Unstable) </td>
-<td>3.22.24.19 |</td>
+<td>2014.01.09</td>
+<td>0.11.11</td>
+<td>3.22.24.19</td>
 </tr>
 <tr>
-<td></td>
-<td> 2013.12.31 </td>
-<td> 0.11.10 (Unstable) </td>
-<td>3.22.24.10 |</td>
+<td>2013.12.31</td>
+<td>0.11.10</td>
+<td>3.22.24.10</td>
 </tr>
 <tr>
-<td></td>
-<td> 2013.08.21 </td>
-<td> 0.11.7             </td>
-<td>3.20.17|</td>
+<td>2013.08.21</td>
+<td>0.11.7</td>
+<td>3.20.17</td>
 </tr>
 <tr>
-<td></td>
-<td> 2013.08.21 </td>
-<td> 0.11.6             </td>
-<td>3.20.14.1|</td>
+<td>2013.08.21</td>
+<td>0.11.6</td>
+<td>3.20.14.1</td>
 </tr>
 <tr>
-<td></td>
-<td> 2013.08.06 </td>
-<td> 0.11.5             </td>
-<td>3.20.11|</td>
+<td>2013.08.06</td>
+<td>0.11.5</td>
+<td>3.20.11</td>
 </tr>
 <tr>
-<td></td>
-<td> 2013.07.12 </td>
-<td> 0.11.4             </td>
-<td>3.20.2|</td>
+<td>2013.07.12</td>
+<td>0.11.4</td>
+<td>3.20.2</td>
 </tr>
 <tr>
-<td></td>
-<td> 2013.06.26 </td>
-<td> 0.11.3             </td>
-<td>3.19.13|</td>
+<td>2013.06.26</td>
+<td>0.11.3</td>
+<td>3.19.13</td>
 </tr>
 <tr>
-<td></td>
-<td> 2013.05.13 </td>
-<td> 0.11.2             </td>
-<td>3.19.0|</td>
+<td>2013.05.13</td>
+<td>0.11.2</td>
+<td>3.19.0</td>
 </tr>
 <tr>
-<td></td>
-<td> 2013.04.19 </td>
-<td> 0.11.1             </td>
-<td>3.18.0|</td>
+<td>2013.04.19</td>
+<td>0.11.1</td>
+<td>3.18.0</td>
 </tr>
 <tr>
-<td></td>
-<td> 2013.04.19 </td>
-<td> 0.11.0             </td>
-<td>3.17.13|</td>
+<td>2013.04.19</td>
+<td>0.11.0</td>
+<td>3.17.13</td>
 </tr>
-</tbody>
-</table>
-
+</tbody></table>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[how to find the version of the V8 my Chromium browser is using]]></title>
-    <link href="http://erossignon.github.com/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using/"/>
-    <updated>2014-08-22T21:58:00+00:00</updated>
-    <id>http://erossignon.github.com/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using</id>
-    <content type="html"><![CDATA[<h2>how to find the version of the V8 my Chromium browser is using ?</h2>
+    <title type="html"><![CDATA[What Version of V8 My Chromium Browser Is Using ?]]></title>
+    <link href="http://erossignon.github.io/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using/"/>
+    <updated>2014-08-22T21:58:00+02:00</updated>
+    <id>http://erossignon.github.io/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using</id>
+    <content type="html"><![CDATA[<p>Here are two methods that can be use to find the version of the V8 engine that a particular version of node is using.</p>
 
-<h3>if you want to find the V8 engine of the version of chrome you are currently running</h3>
+<!-- more -->
+
+<h3>getting the version of your running Chrome</h3>
+
+<p>if you want to find the V8 engine of the version of chrome you are currently running</p>
 
 <ol>
 <li>visit the chrome://version/ page</li>
-<li>get the version of the &#8220;javascript&#8221; engine.</li>
+<li>get the version of the &quot;javascript&quot; engine.</li>
 </ol>
 
+<h3>if don&#39;t have a running instance of Chrome</h3>
 
-<h6>if don&#8217;t have a instance of Chrome running with the version you want to investigate</h6>
+<p>If don&#39;t have a instance of Chrome running with the version you want to investigate:</p>
 
 <ol>
-<li>check the version of Chrome using the &#8220;About&#8221; command.
-For instance, let say it&#8217;s &#8216;36.0.1985.143&#8217; .</li>
-<li>navigate to:
- <code>http://src.chromium.org/viewvc/chrome/releases/[VERSION]/DEPS</code>
- ( replace [VERSION] with the actual string you found at step 1).
- In our example, this will be<br/>
- <a href="http://src.chromium.org/viewvc/chrome/releases/36.0.1985.143/DEPS">http://src.chromium.org/viewvc/chrome/releases/36.0.1985.143/DEPS</a>.
-This file,  maintained by the Chrome development team contains the description of all the dependencies and components used by Chrome, their location and their version number.</li>
-<li>Inside this file, search for the line containing <code>Var("v8")</code>.
-It will look like:
-<code>language
-Var("v8") + '/branches/3.26@22818',
-</code></li>
-<li>That&#8217;s it ! the corresponding V8 engine version is 3.26</li>
+<li>check the version of Chrome using the &quot;About&quot; command.
+For instance, let say it&#39;s &#39;36.0.1985.143&#39; .</li>
+<li><p>navigate to <code>http://src.chromium.org/viewvc/chrome/releases/[VERSION]/DEPS</code> 
+( replace [VERSION] with the actual string you found at step 1).
+In our example, this will be<br>
+<a href="http://src.chromium.org/viewvc/chrome/releases/36.0.1985.143/DEPS">http://src.chromium.org/viewvc/chrome/releases/36.0.1985.143/DEPS</a>.
+This file,  maintained by the Chrome development team contains the description of all the dependencies and components used by Chrome, their location and their version number.</p></li>
+<li><p>Inside this file, search for the line containing <code>Var(&quot;v8&quot;)</code>.</p></li>
 </ol>
 
+<p>It will look like:</p>
 
-<table>
-<thead>
-<tr>
-<th> </th>
-<th>-</th>
-<th> Chromium Version  </th>
-<th> V8 version </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> </td>
-<td>     </td>
-<td>36.0.1985.143 Windows     </td>
-<td> v3.26@22818      |</td>
-</tr>
-<tr>
-<td> </td>
-<td>     </td>
-<td>36.0.1985.125 Ubuntu 14.04 (283153) </td>
-<td> v3.26@21981 |</td>
-</tr>
-<tr>
-<td> </td>
-<td>     </td>
-<td>36.0.1985.57  IPhone    </td>
-<td> v3.26@21367 |</td>
-</tr>
-</tbody>
-</table>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Var("v8") + '/branches/3.26@22818',</span></code></pre></td></tr></table></div></figure>
 
+<ol>
+<li>That&#39;s it ! the corresponding V8 engine version is <strong>3.26</strong></li>
+</ol>
+
+<p>Here is V8 version for the various Chrome I am using :</p>
+
+<table><thead>
+<tr>
+<th>Chromium Version</th>
+<th>V8 version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>36.0.1985.143 Windows</td>
+<td>v3.26@22818</td>
+</tr>
+<tr>
+<td>36.0.1985.125 Ubuntu 14.04 (283153)</td>
+<td>v3.26@21981</td>
+</tr>
+<tr>
+<td>36.0.1985.57  IPhone</td>
+<td>v3.26@21367</td>
+</tr>
+</tbody></table>
 
 <p>This is explained in greater details in <a href="http://ariya.ofilabs.com/2012/02/find-v8-version-of-certain-chrome-release.html">this post</a></p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Improve responsiveness of Youtube frames in  Jekyll and Octopress pages]]></title>
-    <link href="http://erossignon.github.com/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/"/>
-    <updated>2012-11-25T00:38:00+00:00</updated>
-    <id>http://erossignon.github.com/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages</id>
-    <content type="html"><![CDATA[<p>I am now using <a href="http://octopress.org">octopress</a> hosted in <a href="http://github.com">GitHub</a> for my blog.
+    <title type="html"><![CDATA[Improve Responsiveness of Youtube Frames in Jekyll and Octopress Pages]]></title>
+    <link href="http://erossignon.github.io/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/"/>
+    <updated>2012-11-25T00:38:00+01:00</updated>
+    <id>http://erossignon.github.io/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages</id>
+    <content type="html"><![CDATA[<p>I am now using <a href="http://octopress.org">octopress</a> hosted in <a href="http://github.com">GitHub</a> for my blog. 
 Octopress is based on <a href="https://github.com/mojombo/jekyll">Jekyll</a> which is a static site generator written in Ruby.
 Jekyll uses a combination of <a href="http://liquidmarkup.org/">Liquid</a> and <a href="http://old-wp.slekx.com/the-markdown-tutorial/">Markdown</a>
 , two markup engines that allow you to write your post almost in plain ascci without worrying about the HTML syntax.</p>
 
 <p>After installing a <a href="http://makokal.github.com/blog/2012/02/24/simple-jekyll-plugin-for-youtube-videos/">appropriated plugin</a>, I was able to insert youtube video frame using a Liquid sequence</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"> {% youtube VIDEO_ID %}
+</code></pre></div>
+<!-- more -->
 
-<pre><code> {% youtube VIDEO_ID %}
-</code></pre>
-
-<p>Internaly the youtube tag triggers a little Liquid script that turns the video ID into the &lt;iframe> html element as required by the Youtube API.</p>
-
-<pre><code>&lt;iframe width="560" height="315"  
-        src="http://www.youtube.com/embed/q_NvDTZIaS4" 
-        frameborder="0" allowfullscreen &gt;&lt;/iframe&gt;
-</code></pre>
-
+<p>Internaly the youtube tag triggers a little Liquid script that turns the video ID into the &lt;iframe&gt; html element as required by the Youtube API.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;iframe width=&quot;560&quot; height=&quot;315&quot;  
+        src=&quot;http://www.youtube.com/embed/q_NvDTZIaS4&quot; 
+        frameborder=&quot;0&quot; allowfullscreen &gt;&lt;/iframe&gt;
+</code></pre></div>
 <p>and produces :</p>
 
 <iframe width="560" height="315" src="http://www.youtube.com/embed/q_NvDTZIaS4" frameborder="0" allowfullscreen></iframe>
 
-
 <p>One of my first post included a lot of embedded youtube video and it was very convenient.</p>
 
-<p>However, with many videos includes the page takes a very long time to load, and the browser even freezes while the &lt;iframe> s were beeing installed.
+<p>However, with many videos includes the page takes a very long time to load, and the browser even freezes while the &lt;iframe&gt; s were beeing installed.
 (not suprisingly many article,
-<a href="http://www.stevesouders.com/blog/2009/06/03/using-iframes-sparingly/">such as this one</a>
+<a href="http://www.stevesouders.com/blog/2009/06/03/using-iframes-sparingly/">such as this one</a> 
 recommand to use iframe sparingly for this very reason)</p>
 
 <p>Searching a little bit deeper, I stumbled across an article from <a href="http://yabtb.blogspot.fr/2011/12/lazy-load-youtube-videos.html">yabtb</a> explaining how overcome this problem, using a technique called <em>lazy loading</em>.</p>
 
-<p>In essence, lazy loading consist of replacing the &lt;iframe> with a static image  (using the &lt;img> tag) and a little bit of javascript to replace the &lt;img> tag with the proper &lt;iframe> tag at runtime when the reader clicks on the image.</p>
+<p>In essence, lazy loading consist of replacing the &lt;iframe&gt; with a static image  (using the &lt;img&gt; tag) and a little bit of javascript to replace the &lt;img&gt; tag with the proper &lt;iframe&gt; tag at runtime when the reader clicks on the image.</p>
 
-<p>I then decided to improve the <em>youtube</em> <em>Liquid plugin</em> to use this technique and publish the new plugin  &lt;[code on github : <a href="https://github.com/erossignon/jekyll-youtube-lazyloading">https://github.com/erossignon/jekyll-youtube-lazyloading</a></p>
+<p>I then decided to improve the <em>youtube</em> <em>Liquid plugin</em> to use this technique and publish the new plugin  &lt;[code on github : <a href="https://github.com/erossignon/jekyll-youtube-lazyloading">https://github.com/erossignon/jekyll-youtube-lazyloading</a> </p>
 
 <p>you can see the result of here :</p>
 
@@ -544,7 +491,6 @@ How to use the GPIO
 www.raspberrypi.org</div>
 </div>
 
-
 <h3>Credits</h3>
 
 <ul>
@@ -556,26 +502,28 @@ www.raspberrypi.org</div>
 <li>http://net.tutsplus.com/tutorials/other/building-static-sites-with-jekyll/</li>
 <li>http://five.squarespace.com/display/ShowHelp?section=Markdown</li>
 </ul>
-
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[16 amazing things you can do with a Raspberry PI]]></title>
-    <link href="http://erossignon.github.com/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/"/>
-    <updated>2012-11-22T11:18:00+00:00</updated>
-    <id>http://erossignon.github.com/blog/2012/11/22/10-awsome-applications-with-raspberry-pi</id>
-    <content type="html"><![CDATA[<h2>1. a print server</h2>
+    <title type="html"><![CDATA[16 Amazing Things You Can Do With a Raspberry PI]]></title>
+    <link href="http://erossignon.github.io/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/"/>
+    <updated>2012-11-22T11:18:00+01:00</updated>
+    <id>http://erossignon.github.io/blog/2012/11/22/10-awsome-applications-with-raspberry-pi</id>
+    <content type="html"><![CDATA[<p>The Raspberry Pi is a 35$ nano-computer that can do a lot </p>
+
+<!-- more -->
+
+<h2>1. a print server</h2>
 
 <p>Old printers can be refurbished into wireless printers using a Raspeberry PI. This makes it a very cheap solution.</p>
 
 <ul>
-<li> The Raspberry Pi as a <a href="http://blog.elzapp.com/2012/08/21/the-raspberry-pi-as-a-print-server-for-hp-color-laserjet-1600.html">print server for HP Color LaserJet 1600</a></li>
-<li> This <a href="http://raspberrypi.stackexchange.com/questions/980/how-can-i-set-up-a-print-server">stackoverflow article</a>
+<li>The Raspberry Pi as a <a href="http://blog.elzapp.com/2012/08/21/the-raspberry-pi-as-a-print-server-for-hp-color-laserjet-1600.html">print server for HP Color LaserJet 1600</a></li>
+<li>This <a href="http://raspberrypi.stackexchange.com/questions/980/how-can-i-set-up-a-print-server">stackoverflow article</a>
 explains how to set up a print Server with cups.</li>
-<li> You may have to purchase a <a href="http://www.usbgear.com/dock/">Parallel->USB port converter</a>  <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=17662">as explained here</a></li>
+<li>You may have to purchase a <a href="http://www.usbgear.com/dock/">Parallel-&gt;USB port converter</a>  <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=17662">as explained here</a></li>
 </ul>
-
 
 <h2>2. a <a href="http://www.youtube.com/watch?v=zPsN0wH7hKY&amp;feature=related">GPS Tracker</a></h2>
 
@@ -597,13 +545,11 @@ Turbo Exchange, & Websocket Map
 I used a GlobalSat BR-305 GPS receiver, to capture GPS data, and a GSM dongle to upload the data to the Logic Ethos GPS tracking platform. Software is written in C# Mono.</div>
 </div>
 
-
 <h2>3. a Geiger Counter:</h2>
 
-<p>Cooking Hack provides a [tutorial to build a Radiation Sensor]
-(http://www.cooking-hacks.com/index.php/documentation/tutorials/geiger-counter-raspberry-pi-radiation-sensor-board)</p>
+<p>Cooking Hack provides a <a href="http://www.cooking-hacks.com/index.php/documentation/tutorials/geiger-counter-raspberry-pi-radiation-sensor-board">tutorial to build a Radiation Sensor</a></p>
 
-<p> <img src="http://www.cooking-hacks.com/skin/frontend/default/cooking/images/catalog/documentation/raspberry_radiation/raspberry_radiation.JPG"></img></p>
+<p><img src="http://www.cooking-hacks.com/skin/frontend/default/cooking/images/catalog/documentation/raspberry_radiation/raspberry_radiation.JPG"></img></p>
 
 <div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('PONR_s7AXIg');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/PONR_s7AXIg&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
 <a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/PONR_s7AXIg/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=PONR_s7AXIg" id="PONR_s7AXIg" onclick="return false;">
@@ -613,8 +559,7 @@ I used a GlobalSat BR-305 GPS receiver, to capture GPS data, and a GSM dongle to
 <div class="video-info" >Geiger counter (http://mightyohm.com/blog/products/geiger-counter/) connected to a Raspberry Pi (http://www.element14.com/community/groups/raspberry-pi) with count visualized using the Python PyGame library. (by Bonnie King)</div>
 </div>
 
-
-<p> A <a href="http://www.libelium.com/wireless_sensor_networks_to_control_radiation_levels_geiger_counters/">more advance project</a>
+<p>A <a href="http://www.libelium.com/wireless_sensor_networks_to_control_radiation_levels_geiger_counters/">more advance project</a>
  incorporates a GPS Tracker and Zigbee wireless less system.</p>
 
 <h2>4. Home Robotic:</h2>
@@ -628,7 +573,6 @@ I used a GlobalSat BR-305 GPS receiver, to capture GPS data, and a GSM dongle to
 </a>
 <div class="video-info" >I&#8217;ve managed to make the Raspberry Pi work as a speech recognition module to control a robotic arm with a USB interface. This is related to my previous video (http://youtu.be/32nIxJZvqtI), and as usual I&#8217;ve posted instructions on how to get it working on my website: http://www.aonsquared.co.uk/raspi_voice_control</div>
 </div>
-
 
 <h3>Raspberry Pi Robot Test!</h3>
 
@@ -646,7 +590,6 @@ Robot hacked from a BigTrak Jr.
 Music One Quarter By Fairlight.</div>
 </div>
 
-
 <h3>Raspberry Pi robot using node.js and Socket.io</h3>
 
 <div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('SWSpRyCDfZE');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/SWSpRyCDfZE&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
@@ -658,7 +601,6 @@ Music One Quarter By Fairlight.</div>
 
 Code: https://github.com/mirceageorgescu/raspi-tank</div>
 </div>
-
 
 <h2>5. Home automation</h2>
 
@@ -710,7 +652,6 @@ The instructions to install this 25 year old mythic Operating system on the RPI 
 <div class="video-info" >I have a stack of old RISC OS machines including an Iyonix.  I loved them.  Best UI ever and still.  But they don&#8217;t have all the games and hardware of Windows or the internet ability of Linux.  So it&#8217;s been a while since I used one.  When I heard a that RISC OS would run on the Pi, I had to try it for myself!  Brilliant.  Here&#8217;s me trying it for the second time.</div>
 </div>
 
-
 <h2>11. Vintage Video Games</h2>
 
 <p><img src="http://static.geekbeat.tv/wp-content/uploads/2012/08/Raspberry_Pi_MAME.jpg"></img>
@@ -719,7 +660,7 @@ The instructions to install this 25 year old mythic Operating system on the RPI 
 
 <h2>12. a coffe machine</h2>
 
-<p>  yes ! a <a href="http://moccapi.blogspot.co.uk/">coffee machine</a></p>
+<p>yes ! a <a href="http://moccapi.blogspot.co.uk/">coffee machine</a></p>
 
 <h2>13. Build your own 3D printer</h2>
 
@@ -736,7 +677,6 @@ I finally had some time to clean it up and post on github here:
 https://github.com/w-A-L-L-e/printerface</div>
 </div>
 
-
 <h2>14. Weather Station</h2>
 
 <p>Connecting 2 temperature sensors, light sensor and a barometric pressure sensor on a Raspberry to build a weather station.
@@ -751,8 +691,7 @@ on <a href="Temperatures,%20light%20levels,%20pressure,%20logging,%20LCD,%20PCB%
 Video goes with this blog article http://raspi.tv/2012/temperatures-light-levels-pressure-logging-lcd-pcb-bringing-it-all-together</div>
 </div>
 
-
-<p>Why not use the <a href="http://cgi.cottonpickers.plus.com/~cottonpickers/forum/viewtopic.php?f=4&amp;t=3">&#8220;Solar Battery Cells&#8221;</a> propepsed by cottonpickers to make this weather station autonomous ?</p>
+<p>Why not use the <a href="http://cgi.cottonpickers.plus.com/%7Ecottonpickers/forum/viewtopic.php?f=4&amp;t=3">&quot;Solar Battery Cells&quot;</a> propepsed by cottonpickers to make this weather station autonomous ?</p>
 
 <p><img width="520px" src="http://img205.imageshack.us/img205/1992/img3680iw.jpg"></img>
 <img width="520px" src="http://img577.imageshack.us/img577/9264/img3681v.jpg"><img></p>
@@ -775,15 +714,16 @@ UAVA - Telemetry and GoPro HD, by Anthony Stirk
 BUZZ8 - Telemetry backup</div>
 </div>
 
-
 <p><a href="http://www.daveakerman.com/?p=592">PIE1 - Raspberry Pi Sends Live Images from Near Space</a></p>
 
 <h2>16. a HPC Computer</h2>
 
-<p>A Southampton university team and a 6 year old Lego specialist has built a HPC computer
+<p>A Southampton university team and a 6 year old Lego specialist has built a HPC computer 
 composed with a cluster of 64 Raspberry PI</p>
 
-<blockquote><p>Building a High Performance Computer ourself with a aim to inspire the next generation of scientist and engineers.</p></blockquote>
+<blockquote>
+<p>Building a High Performance Computer ourself with a aim to inspire the next generation of scientist and engineers.</p>
+</blockquote>
 
 <p>Supercomputer get built using Raspberry Pi and Lego
 <img src="http://cdn.arstechnica.net/wp-content/uploads/2012/09/raspberry-pi-supercomputer-2-640x425.jpg"></img></p>
@@ -802,14 +742,12 @@ To read the full story go to:
 http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.shtml</div>
 </div>
 
-
 <ul>
 <li><a href="http://www.hpcwire.com/hpcwire/2012-09-12/supercomputer_gets_built_using_rasberry_pi_computers_and_lego.html">Supercomputer gets built using Raspberry Pi computers and Lego</a></li>
 <li><a href="http://www.lemondeinformatique.fr/actualites/lire-un-supercalculateur-en-raspberry-pi-et-en-lego-50408.html">Un supercalculateur en Raspberry Pi et en Lego</a></li>
 <li><a href="http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.shtml">Southampton engineers a Raspberry Pi Supercomputer</a></li>
-<li><a href="http://www.southampton.ac.uk/~sjc/raspberrypi/">Southampton University Web Site</a></li>
+<li><a href="http://www.southampton.ac.uk/%7Esjc/raspberrypi/">Southampton University Web Site</a></li>
 </ul>
-
 
 <p>see also:</p>
 
@@ -818,7 +756,6 @@ http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.sht
 <li><a href="http://geekbeat.tv/5-cool-projects-for-your-raspberry-pi/">5 cool projects for your Raspberry Pi</a></li>
 <li><a href="http://www.guardian.co.uk/technology/2012/nov/04/12-things-to-make-raspberry-pi">12 things to do with a Raspberry Pi</a></li>
 </ul>
-
 ]]></content>
   </entry>
   

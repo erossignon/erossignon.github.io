@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | Gadz-Geek Blog]]></title>
+  <link href="http://erossignon.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://erossignon.github.io/"/>
+  <updated>2014-09-06T10:51:49+02:00</updated>
+  <id>http://erossignon.github.io/</id>
+  <author>
+    <name><![CDATA[Etienne Rossignon]]></name>
+    <email><![CDATA[etienne.rossignon@gadz.org]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Improve Responsiveness of Youtube Frames in Jekyll and Octopress Pages]]></title>
+    <link href="http://erossignon.github.io/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/"/>
+    <updated>2012-11-25T00:38:00+01:00</updated>
+    <id>http://erossignon.github.io/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages</id>
+    <content type="html"><![CDATA[<p>I am now using <a href="http://octopress.org">octopress</a> hosted in <a href="http://github.com">GitHub</a> for my blog. 
+Octopress is based on <a href="https://github.com/mojombo/jekyll">Jekyll</a> which is a static site generator written in Ruby.
+Jekyll uses a combination of <a href="http://liquidmarkup.org/">Liquid</a> and <a href="http://old-wp.slekx.com/the-markdown-tutorial/">Markdown</a>
+, two markup engines that allow you to write your post almost in plain ascci without worrying about the HTML syntax.</p>
+
+<p>After installing a <a href="http://makokal.github.com/blog/2012/02/24/simple-jekyll-plugin-for-youtube-videos/">appropriated plugin</a>, I was able to insert youtube video frame using a Liquid sequence
+
+     {% youtube VIDEO_ID %}
+</p>
+
+<!-- more -->
+
+<p>Internaly the youtube tag triggers a little Liquid script that turns the video ID into the &lt;iframe&gt; html element as required by the Youtube API.</p>
+
+<p>
+    <iframe width="560" height="315"  
+            src="http://www.youtube.com/embed/q_NvDTZIaS4" 
+            frameborder="0" allowfullscreen ></iframe>
+</p>
+
+<p>and produces :</p>
+
+<iframe width="560" height="315" src="http://www.youtube.com/embed/q_NvDTZIaS4" frameborder="0" allowfullscreen></iframe>
+
+<p>One of my first post included a lot of embedded youtube video and it was very convenient.</p>
+
+<p>However, with many videos includes the page takes a very long time to load, and the browser even freezes while the &lt;iframe&gt; s were beeing installed.
+(not suprisingly many article,
+<a href="http://www.stevesouders.com/blog/2009/06/03/using-iframes-sparingly/">such as this one</a> 
+recommand to use iframe sparingly for this very reason)</p>
+
+<p>Searching a little bit deeper, I stumbled across an article from <a href="http://yabtb.blogspot.fr/2011/12/lazy-load-youtube-videos.html">yabtb</a> explaining how overcome this problem, using a technique called <em>lazy loading</em>.</p>
+
+<p>In essence, lazy loading consist of replacing the &lt;iframe&gt; with a static image  (using the &lt;img&gt; tag) and a little bit of javascript to replace the &lt;img&gt; tag with the proper &lt;iframe&gt; tag at runtime when the reader clicks on the image.</p>
+
+<p>I then decided to improve the <em>youtube</em> <em>Liquid plugin</em> to use this technique and publish the new plugin  &lt;[code on github : <a href="https://github.com/erossignon/jekyll-youtube-lazyloading">https://github.com/erossignon/jekyll-youtube-lazyloading</a> </p>
+
+<p>you can see the result of here :</p>
+
+<p>
+<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('q_NvDTZIaS4');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/q_NvDTZIaS4&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
+<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/q_NvDTZIaS4/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=q_NvDTZIaS4" id="q_NvDTZIaS4" onclick="return false;">
+<div class="youtube-lazy-link-div"></div>
+<div class="youtube-lazy-link-info">Raspberry Pi - How to use the GPIO</div>
+</a>
+<div class="video-info" >http://goo.gl/mdVSm
+http://pypi.python.org/pypi/RPi.GPIO
+http://lwk.mjhosting.co.uk/?p=343
+Raspberry Pi
+How to use the GPIO
+www.raspberrypi.org</div>
+</div>
+
+</p>
+
+<h3>Credits</h3>
+
+<ul>
+<li><a href="http://amobil.se/2011/11/responsive-embeds/">andmag</a></li>
+<li><a href="http://www.portwaypoint.co.uk/jekyll-youtube-liquid-template-tag-gist/">portwaypoint</a></li>
+<li><a href="http://yabtb.blogspot.fr/2011/12/lazy-load-youtube-videos.html">yatb</a></li>
+<li><a href="https://github.com/optikfluffel/octopress-responsive-video-embed">optikfluffel</a></li>
+<li><a href="http://stackoverflow.com/questions/843680/how-to-replace-dom-element-in-place-using-javascript?answertab=active#tab-top">stackoverflow</a></li>
+<li>http://net.tutsplus.com/tutorials/other/building-static-sites-with-jekyll/</li>
+<li>http://five.squarespace.com/display/ShowHelp?section=Markdown</li>
+</ul>
+]]></content>
+  </entry>
+  
+</feed>

@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>benchmarking the performance of nodejs - Gadz-Geek Blog</title>
+  <title>Benchmarking the Performance of Nodejs - Gadz-Geek Blog</title>
   <meta name="author" content="Etienne Rossignon">
 
   
-  <meta name="description" content="Benchmarking nodejs During the course of developing node-opcua, a javascript framework for OPCUA powered by
-nodejs, I came across the need to measure &hellip;">
+  <meta name="description" content="During the course of developing node-opcua, a javascript framework for OPCUA powered by
+nodejs, I came across the need to measure the performance of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,16 +19,17 @@ nodejs, I came across the need to measure &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://erossignon.github.com/blog/2014/08/22/benchmarking-the-performance-of-nodejs/">
+  <link rel="canonical" href="http://erossignon.github.io/blog/2014/08/22/benchmarking-the-performance-of-nodejs">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Gadz-Geek Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
   <script type="text/javascript">
@@ -44,7 +45,6 @@ nodejs, I came across the need to measure &hellip;">
   </script>
 
 
-  Included file 'youtubelazyloader.html' not found in _includes directory
 </head>
 
 <body   >
@@ -63,7 +63,7 @@ nodejs, I came across the need to measure &hellip;">
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:erossignon.github.com" />
+    <input type="hidden" name="q" value="site:erossignon.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -90,25 +90,18 @@ nodejs, I came across the need to measure &hellip;">
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-08-22T22:07:00+00:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2014</time>
+<time class='entry-date' datetime='2014-08-22T22:07:00+02:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:07 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h1>Benchmarking nodejs</h1>
-
-<p>During the course of developing <a href="http://node-opcua.github.io/">node-opcua</a>, a javascript framework for OPCUA powered by
+<div class="entry-content"><p>During the course of developing <a href="http://node-opcua.github.io/">node-opcua</a>, a javascript framework for OPCUA powered by
 <a href="http://nodejs.org">nodejs</a>, I came across the need to measure the performance of nodejs on various hardware including
 ARM based nano-computers such as RasberryPi and BeagleBoneBlack.</p>
+
+<!-- more -->
 
 <h3>Understanding the performance of the V8 engine used by nodejs.</h3>
 
@@ -117,59 +110,53 @@ ARM based nano-computers such as RasberryPi and BeagleBoneBlack.</p>
 <p>V8 code optimisation can lead to <a href="http://wingolog.org/archives/2011/06/10/v8-is-faster-than-gcc">astonishing good results</a>
 compared with C/C++ program, at least on a x86/x64 processor.</p>
 
-<p>But &#8230;
- * Does V8 inside nodejs perform as well as in Chrome ?
- * Is V8 performing well also on ARM CPU ?
- * How does nodejs running on a Raspberry compare  with nodejs running on an BeagleBoneBlack ?</p>
+<p>But ...</p>
 
-<p> Here comes <strong><a href="https://code.google.com/p/octane-benchmark/">Octane 2</a></strong>, a <a href="http://thenextweb.com/google/2013/11/06/google-releases-version-2-0-javascript-benchmark-tool-octane-focus-reducing-latency">benchmark to score the performance of a javascript engine running inside a browser</a> designed by Google.</p>
+<ul>
+<li>Does V8 inside nodejs perform as well as in Chrome ? </li>
+<li>Is V8 performing well also on ARM CPU ?</li>
+<li>How does nodejs running on a Raspberry compare  with nodejs running on an BeagleBoneBlack ? </li>
+</ul>
 
-<p> You can run the benchmark inside your browser by  following this <a href="http://octane-benchmark.googlecode.com/svn/latest/index.html">link</a> and pressing the START button.</p>
+<p>Here comes <strong><a href="https://code.google.com/p/octane-benchmark/">Octane 2</a></strong>, a <a href="http://thenextweb.com/google/2013/11/06/google-releases-version-2-0-javascript-benchmark-tool-octane-focus-reducing-latency">benchmark to score the performance of a javascript engine running inside a browser</a> designed by Google.</p>
+
+<p>You can run the benchmark inside your browser by  following this <a href="http://octane-benchmark.googlecode.com/svn/latest/index.html">link</a> and pressing the START button.</p>
 
 <p>Here are the results with Chrome and Firefox on my desktop:</p>
 
-<table>
-<thead>
+<table><thead>
 <tr>
-<th></th>
-<th> Computer       </th>
-<th> environment   </th>
-<th> Score </th>
-<th> Javascript Engine   </th>
+<th>Computer</th>
+<th>environment</th>
+<th style="text-align: right">Score</th>
+<th>Javascript Engine</th>
 </tr>
-</thead>
-<tbody>
+</thead><tbody>
 <tr>
-<td></td>
-<td> Core I7 desktop </td>
-<td> Chrome (36.0.1985.143)      </td>
-<td> 26008 </td>
-<td> V8 v3.26(*)    |</td>
+<td>Core I7 desktop</td>
+<td>Chrome (36.0.1985.143)</td>
+<td style="text-align: right">26008</td>
+<td>V8 v3.26(*)</td>
 </tr>
 <tr>
-<td></td>
-<td> Core I7 desktop </td>
-<td> Firefox 31      </td>
-<td> 15800 </td>
-<td> SpiderMonkey 31   |</td>
+<td>Core I7 desktop</td>
+<td>Firefox 31</td>
+<td style="text-align: right">15800</td>
+<td>SpiderMonkey 31</td>
 </tr>
 <tr>
-<td></td>
-<td> VM Ubuntu 14.04(*)</td>
-<td> Chromium  (36.0.1985.125)    </td>
-<td> 8178  </td>
-<td>  V8 3.26      |</td>
+<td>VM Ubuntu 14.04(*)</td>
+<td>Chromium  (36.0.1985.125)</td>
+<td style="text-align: right">8178</td>
+<td>V8 3.26</td>
 </tr>
 <tr>
-<td></td>
-<td> VM Ubuntu 14.04(*)</td>
-<td> Firefox 31   </td>
-<td> 5041  </td>
-<td>  SpiderMonkey 31      |</td>
+<td>VM Ubuntu 14.04(*)</td>
+<td>Firefox 31</td>
+<td style="text-align: right">5041</td>
+<td>SpiderMonkey 31</td>
 </tr>
-</tbody>
-</table>
-
+</tbody></table>
 
 <p>(*) Ubuntu 14.04 running inside a VirtualBox machine on my Core I7 desktop.</p>
 
@@ -185,69 +172,71 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
 
 <h3>Running Octane benchmark for nodejs:</h3>
 
-<table>
-<thead>
+<table><thead>
 <tr>
-<th></th>
-<th> Computer       </th>
-<th> environment   </th>
-<th> Score </th>
-<th> time   </th>
+<th style="text-align: left">Computer</th>
+<th style="text-align: left">environment</th>
+<th style="text-align: right">Score</th>
+<th style="text-align: right">time</th>
 </tr>
-</thead>
-<tbody>
+</thead><tbody>
 <tr>
-<td></td>
-<td>Core I7 desktop </td>
-<td> nodejs 0.10.24</td>
-<td> 15800 </td>
-<td> 50s    |</td>
+<td style="text-align: left">Core I7 desktop</td>
+<td style="text-align: left">nodejs 0.10.24</td>
+<td style="text-align: right">15800</td>
+<td style="text-align: right">50s</td>
 </tr>
 <tr>
-<td></td>
-<td>Raspberry       </td>
-<td> nodejs 0.10.24</td>
-<td>   138 </td>
-<td> 2351 s |</td>
+<td style="text-align: left">Raspberry</td>
+<td style="text-align: left">nodejs 0.10.24</td>
+<td style="text-align: right">138</td>
+<td style="text-align: right">2351 s</td>
 </tr>
 <tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.08.21</td>
-<td>  5600 </td>
-<td> 74s    |</td>
+<td style="text-align: left">VM Ubuntu 14.04</td>
+<td style="text-align: left">nodejs 0.08.21</td>
+<td style="text-align: right">5600</td>
+<td style="text-align: right">74s</td>
 </tr>
 <tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.10.10</td>
-<td> 6550</td>
-<td> 62s     |</td>
+<td style="text-align: left">VM Ubuntu 14.04</td>
+<td style="text-align: left">nodejs 0.10.10</td>
+<td style="text-align: right">6550</td>
+<td style="text-align: right">62s</td>
 </tr>
 <tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.10.24</td>
-<td> 6472</td>
-<td> 62s   |</td>
+<td style="text-align: left">VM Ubuntu 14.04</td>
+<td style="text-align: left">nodejs 0.10.24</td>
+<td style="text-align: right">6472</td>
+<td style="text-align: right">62s</td>
 </tr>
 <tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.10.31</td>
-<td> (crashed in Mandreel)</td>
-<td>     |</td>
+<td style="text-align: left">VM Ubuntu 14.04</td>
+<td style="text-align: left">nodejs 0.10.31</td>
+<td style="text-align: right">(crashed in Mandreel)</td>
+<td style="text-align: right"></td>
 </tr>
 <tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.11.13</td>
-<td>8050</td>
-<td> 50s    |</td>
+<td style="text-align: left">VM Ubuntu 14.04</td>
+<td style="text-align: left">nodejs 0.11.13</td>
+<td style="text-align: right">8050</td>
+<td style="text-align: right">50s</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 
+<h2>running NodeJS Benchmark</h2>
+
+<p>Follow this instruction to run <a href="https://github.com/erossignon/benchmark-octane">Benchmark-octane</a> </p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone https://github.com/erossignon/benchmark-octane
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>benchmark-octane
+</span><span class='line'><span class="nv">$ </span>npm install
+</span><span class='line'><span class="nv">$ </span>node run.js
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
 
@@ -263,19 +252,12 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-08-22T22:07:00+00:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2014</time>
+<time class='entry-date' datetime='2014-08-22T22:07:00+02:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:07 pm</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/v8/'>V8</a>, <a class='category' href='/blog/categories/benchmark/'>benchmark</a>, <a class='category' href='/blog/categories/nodejs/'>nodejs</a>, <a class='category' href='/blog/categories/octane/'>octane</a>
+    <a class='category' href='/blog/categories/benchmark/'>benchmark</a>, <a class='category' href='/blog/categories/chrome/'>chrome</a>, <a class='category' href='/blog/categories/nodejs/'>nodejs</a>, <a class='category' href='/blog/categories/octane/'>octane</a>, <a class='category' href='/blog/categories/v8/'>v8</a>
   
 </span>
 
@@ -284,7 +266,7 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://erossignon.github.com/blog/2014/08/22/benchmarking-the-performance-of-nodejs/" data-via="gadz_er" data-counturl="http://erossignon.github.com/blog/2014/08/22/benchmarking-the-performance-of-nodejs/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://erossignon.github.io/blog/2014/08/22/benchmarking-the-performance-of-nodejs/" data-via="gadz_er" data-counturl="http://erossignon.github.io/blog/2014/08/22/benchmarking-the-performance-of-nodejs/" >Tweet</a>
   
   
   
@@ -293,7 +275,7 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/" title="Previous Post: how to find the version of the V8 my nodejs engine is using ">&laquo; how to find the version of the V8 my nodejs engine is using </a>
+        <a class="basic-alignment left" href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/" title="Previous Post: what V8 version is my nodejs running ?">&laquo; what V8 version is my nodejs running ?</a>
       
       
     </p>
@@ -319,23 +301,23 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/08/22/benchmarking-the-performance-of-nodejs/">benchmarking the performance of nodejs</a>
+        <a href="/blog/2014/08/22/benchmarking-the-performance-of-nodejs/">Benchmarking the Performance of Nodejs</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/">how to find the version of the V8 my nodejs engine is using </a>
+        <a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/">What V8 Version Is My Nodejs Running ?</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using/">how to find the version of the V8 my Chromium browser is using</a>
+        <a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using/">What Version of V8 My Chromium Browser Is Using ?</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/">Improve responsiveness of Youtube frames in  Jekyll and Octopress pages</a>
+        <a href="/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/">Improve Responsiveness of Youtube Frames in Jekyll and Octopress Pages</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/">16 amazing things you can do with a Raspberry PI</a>
+        <a href="/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/">16 Amazing Things You Can Do With a Raspberry PI</a>
       </li>
     
   </ul>
@@ -350,7 +332,7 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
   <a href="https://github.com/erossignon">@erossignon</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -372,6 +354,14 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
 
 
 <section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/er_gadz?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/er_gadz">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+<section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
     <li class="loading">Status updating...</li>
@@ -385,29 +375,6 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
   
     <a href="http://twitter.com/gadz_er" class="twitter-follow-button" data-show-count="false">Follow @gadz_er</a>
   
-</section>
-
-
-<section>
-  <h1>On Delicious</h1>
-  <div id="delicious"></div>
-  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/er_gadz?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
-  <p><a href="http://delicious.com/er_gadz">My Delicious Bookmarks &raquo;</a></p>
-</section>
-
-
-
-
-<section>
-  <h1>Newsstand</h1>
-<script src="http://widgets.paper.li/javascripts/init.js" type="text/javascript"></script>
-<script>
-  Paperli.PaperWidget.Show({
-      pid: 'gadz_er/1324366784',
-      width: 200,
-      background: '#252525'
-  })
-</script>
 </section>
 
 
@@ -430,13 +397,13 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://erossignon.github.com/blog/2014/08/22/benchmarking-the-performance-of-nodejs/';
-        var disqus_url = 'http://erossignon.github.com/blog/2014/08/22/benchmarking-the-performance-of-nodejs/';
+        var disqus_identifier = 'http://erossignon.github.io/blog/2014/08/22/benchmarking-the-performance-of-nodejs/';
+        var disqus_url = 'http://erossignon.github.io/blog/2014/08/22/benchmarking-the-performance-of-nodejs/';
         var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -452,7 +419,7 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>

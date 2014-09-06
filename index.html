@@ -9,8 +9,8 @@
   <meta name="author" content="Etienne Rossignon">
 
   
-  <meta name="description" content="Benchmarking nodejs During the course of developing node-opcua, a javascript framework for OPCUA powered by
-nodejs, I came across the need to measure &hellip;">
+  <meta name="description" content="During the course of developing node-opcua, a javascript framework for OPCUA powered by
+nodejs, I came across the need to measure the performance of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,16 +19,17 @@ nodejs, I came across the need to measure &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://erossignon.github.com/">
+  <link rel="canonical" href="http://erossignon.github.io">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Gadz-Geek Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
   <script type="text/javascript">
@@ -44,7 +45,6 @@ nodejs, I came across the need to measure &hellip;">
   </script>
 
 
-  Included file 'youtubelazyloader.html' not found in _includes directory
 </head>
 
 <body   >
@@ -63,7 +63,7 @@ nodejs, I came across the need to measure &hellip;">
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:erossignon.github.com" />
+    <input type="hidden" name="q" value="site:erossignon.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -93,166 +93,23 @@ nodejs, I came across the need to measure &hellip;">
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-08-22T22:07:00+00:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2014</time>
+<time class='entry-date' datetime='2014-08-22T22:07:00+02:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:07 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h1>Benchmarking nodejs</h1>
-
-<p>During the course of developing <a href="http://node-opcua.github.io/">node-opcua</a>, a javascript framework for OPCUA powered by
+  <div class="entry-content"><p>During the course of developing <a href="http://node-opcua.github.io/">node-opcua</a>, a javascript framework for OPCUA powered by
 <a href="http://nodejs.org">nodejs</a>, I came across the need to measure the performance of nodejs on various hardware including
 ARM based nano-computers such as RasberryPi and BeagleBoneBlack.</p>
 
-<h3>Understanding the performance of the V8 engine used by nodejs.</h3>
-
-<p>Nodejs is using  Google V8 javascript engine which runs inside the Chrome web browser too.</p>
-
-<p>V8 code optimisation can lead to <a href="http://wingolog.org/archives/2011/06/10/v8-is-faster-than-gcc">astonishing good results</a>
-compared with C/C++ program, at least on a x86/x64 processor.</p>
-
-<p>But &#8230;
- * Does V8 inside nodejs perform as well as in Chrome ?
- * Is V8 performing well also on ARM CPU ?
- * How does nodejs running on a Raspberry compare  with nodejs running on an BeagleBoneBlack ?</p>
-
-<p> Here comes <strong><a href="https://code.google.com/p/octane-benchmark/">Octane 2</a></strong>, a <a href="http://thenextweb.com/google/2013/11/06/google-releases-version-2-0-javascript-benchmark-tool-octane-focus-reducing-latency">benchmark to score the performance of a javascript engine running inside a browser</a> designed by Google.</p>
-
-<p> You can run the benchmark inside your browser by  following this <a href="http://octane-benchmark.googlecode.com/svn/latest/index.html">link</a> and pressing the START button.</p>
-
-<p>Here are the results with Chrome and Firefox on my desktop:</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th> Computer       </th>
-<th> environment   </th>
-<th> Score </th>
-<th> Javascript Engine   </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td> Core I7 desktop </td>
-<td> Chrome (36.0.1985.143)      </td>
-<td> 26008 </td>
-<td> V8 v3.26(*)    |</td>
-</tr>
-<tr>
-<td></td>
-<td> Core I7 desktop </td>
-<td> Firefox 31      </td>
-<td> 15800 </td>
-<td> SpiderMonkey 31   |</td>
-</tr>
-<tr>
-<td></td>
-<td> VM Ubuntu 14.04(*)</td>
-<td> Chromium  (36.0.1985.125)    </td>
-<td> 8178  </td>
-<td>  V8 3.26      |</td>
-</tr>
-<tr>
-<td></td>
-<td> VM Ubuntu 14.04(*)</td>
-<td> Firefox 31   </td>
-<td> 5041  </td>
-<td>  SpiderMonkey 31      |</td>
-</tr>
-</tbody>
-</table>
-
-
-<p>(*) Ubuntu 14.04 running inside a VirtualBox machine on my Core I7 desktop.</p>
-
-<p>However, I needed the same benchmark but running on nodejs , without a GUI.
-Fortunately,  octane benches are pure javascript algorithms and can be easily ported to node.
-Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">benchmark-octane</a> a NPM module on github that serves as a very good starting point.</p>
-
-<p>With a few tweaks I created a <a href="https://github.com/erossignon/benchmark-octane">forked version of benchmark-octane</a> that suites my need.</p>
-
-<p>This version produces the same output as the browser version making results more comparable.</p>
-
-<p>This is the result of running <strong>benchmark-octane</strong> on various version of node:</p>
-
-<h3>Running Octane benchmark for nodejs:</h3>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th> Computer       </th>
-<th> environment   </th>
-<th> Score </th>
-<th> time   </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>Core I7 desktop </td>
-<td> nodejs 0.10.24</td>
-<td> 15800 </td>
-<td> 50s    |</td>
-</tr>
-<tr>
-<td></td>
-<td>Raspberry       </td>
-<td> nodejs 0.10.24</td>
-<td>   138 </td>
-<td> 2351 s |</td>
-</tr>
-<tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.08.21</td>
-<td>  5600 </td>
-<td> 74s    |</td>
-</tr>
-<tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.10.10</td>
-<td> 6550</td>
-<td> 62s     |</td>
-</tr>
-<tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.10.24</td>
-<td> 6472</td>
-<td> 62s   |</td>
-</tr>
-<tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.10.31</td>
-<td> (crashed in Mandreel)</td>
-<td>     |</td>
-</tr>
-<tr>
-<td></td>
-<td>VM Ubuntu 14.04 </td>
-<td> nodejs 0.11.13</td>
-<td>8050</td>
-<td> 50s    |</td>
-</tr>
-</tbody>
-</table>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/08/22/benchmarking-the-performance-of-nodejs/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -263,7 +120,7 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/">How to Find the Version of the V8 My Nodejs Engine Is Using</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/">What V8 Version Is My Nodejs Running ?</a></h1>
     
     
       <p class="meta">
@@ -272,267 +129,21 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-08-22T21:58:00+00:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2014</time>
+<time class='entry-date' datetime='2014-08-22T21:58:00+02:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>9:58 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h2>how to find the version of the V8 my nodejs engine is using &#8220;?</h2>
-
-<ul>
-<li><p>if you can run nodejs, you can simple execute the following command
-<code>
-$ node -e "console.log(process.versions['node'],process.versions['v8'])"
-</code></p></li>
-<li><p>if you cannot run nodejs</p>
-
-<ol>
-<li>read the nodejs Release note at http://nodejs.org/changelog.html</li>
-<li>scan the file to detect when the V8 engine was upgrade and note the corresponding node version.</li>
-</ol>
-</li>
-</ul>
-
-
-<h3>nodejs versions and the matching V8 version</h3>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th>date       </th>
-<th> nodejs            </th>
-<th> V8 version </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>2014.08.19 </td>
-<td> 0.10.31           </td>
-<td> 3.14.5.9  |</td>
-</tr>
-<tr>
-<td></td>
-<td>2013.05.24 </td>
-<td> 0.10.8 (stable)   </td>
-<td> 3.14.5.9  |</td>
-</tr>
-<tr>
-<td></td>
-<td>13.03.11 </td>
-<td> 0.10.0 (stable)   </td>
-<td> 3.14.5  |</td>
-</tr>
-<tr>
-<td></td>
-<td>2013.03.01 </td>
-<td> 0.9.11            </td>
-<td> downgraded to v3.14.5    |</td>
-</tr>
-<tr>
-<td></td>
-<td>2013.02.19 </td>
-<td> 0.9.10            </td>
-<td> 3.15.11.15|</td>
-</tr>
-<tr>
-<td></td>
-<td>2013.01.24 </td>
-<td> 0.9.8             </td>
-<td> 3.15.11.10|</td>
-</tr>
-<tr>
-<td></td>
-<td>2013.01.18 </td>
-<td> 0.9.7             </td>
-<td> 3.15.11.7 |</td>
-</tr>
-<tr>
-<td></td>
-<td>2013.01.11 </td>
-<td> 0.9.6             </td>
-<td> 3.15.11.5 |</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.10.24 </td>
-<td> 0.9.3(unstable)             </td>
-<td> 3.13.7.4  |</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.10.25 </td>
-<td> 0.8.13            </td>
-<td> 3.11.10.25|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.09.11 </td>
-<td> 0.8.9             </td>
-<td> 3.11.10.22|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.08.22 </td>
-<td> 0.8.8             </td>
-<td> 3.11.10.19|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.07.25 </td>
-<td> 0.8.4             </td>
-<td> 3.11.10.17|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.07.19 </td>
-<td> 0.8.3             </td>
-<td> 3.11.10.15|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.06.29 </td>
-<td> 0.8.1             </td>
-<td> 3.11.10.12|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.06.25 </td>
-<td> 0.8.0(stable)         </td>
-<td> 3.11.10.10|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.05.28 </td>
-<td> 0.7.9             </td>
-<td> 3.11.1|</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.01.23 </td>
-<td> 0.7.1             </td>
-<td> 3.8.8 |</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.01.07 </td>
-<td> 0.7 (unstable)    </td>
-<td> 3.8.6 |</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.04.30 </td>
-<td> 0.6.16            </td>
-<td> 3.6.6.25  |</td>
-</tr>
-<tr>
-<td></td>
-<td>2012.03.02 </td>
-<td> 0.6.12           </td>
-<td> 3.6.6.24  |</td>
-</tr>
-</tbody>
-</table>
-
-
-<p>Finding the V8 engine of the current unstable release (V0.11) requires that you investigate the specific changelog file. For instance, looking at http://nodejs.org/dist/v0.11.13/docs/changelog.html</p>
-
-<ul>
-<li>here are the extracted versions:</li>
-</ul>
-
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th>date       </th>
-<th> nodejs            </th>
-<th> V8 version </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td> 2014.05.01 </td>
-<td> 0.11.13 (Unstable) </td>
-<td><a href="http://upstream-tracker.org/changelogs/v8/3.24.35.22/changelog.html">3.24.35.22</a> |</td>
-</tr>
-<tr>
-<td></td>
-<td> 2014.01.09 </td>
-<td> 0.11.11 (Unstable) </td>
-<td>3.22.24.19 |</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.12.31 </td>
-<td> 0.11.10 (Unstable) </td>
-<td>3.22.24.10 |</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.08.21 </td>
-<td> 0.11.7             </td>
-<td>3.20.17|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.08.21 </td>
-<td> 0.11.6             </td>
-<td>3.20.14.1|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.08.06 </td>
-<td> 0.11.5             </td>
-<td>3.20.11|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.07.12 </td>
-<td> 0.11.4             </td>
-<td>3.20.2|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.06.26 </td>
-<td> 0.11.3             </td>
-<td>3.19.13|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.05.13 </td>
-<td> 0.11.2             </td>
-<td>3.19.0|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.04.19 </td>
-<td> 0.11.1             </td>
-<td>3.18.0|</td>
-</tr>
-<tr>
-<td></td>
-<td> 2013.04.19 </td>
-<td> 0.11.0             </td>
-<td>3.17.13|</td>
-</tr>
-</tbody>
-</table>
+  <div class="entry-content"><p>Here are two methods that can be use to find the version of the V8 engine that a particular version of node is using.</p>
 
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -543,7 +154,7 @@ $ node -e "console.log(process.versions['node'],process.versions['v8'])"
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using/">How to Find the Version of the V8 My Chromium Browser Is Using</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using/">What Version of V8 My Chromium Browser Is Using ?</a></h1>
     
     
       <p class="meta">
@@ -552,85 +163,21 @@ $ node -e "console.log(process.versions['node'],process.versions['v8'])"
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-08-22T21:58:00+00:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2014</time>
+<time class='entry-date' datetime='2014-08-22T21:58:00+02:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>9:58 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h2>how to find the version of the V8 my Chromium browser is using ?</h2>
+  <div class="entry-content"><p>Here are two methods that can be use to find the version of the V8 engine that a particular version of node is using.</p>
 
-<h3>if you want to find the V8 engine of the version of chrome you are currently running</h3>
-
-<ol>
-<li>visit the chrome://version/ page</li>
-<li>get the version of the &#8220;javascript&#8221; engine.</li>
-</ol>
-
-
-<h6>if don&#8217;t have a instance of Chrome running with the version you want to investigate</h6>
-
-<ol>
-<li>check the version of Chrome using the &#8220;About&#8221; command.
-For instance, let say it&#8217;s &#8216;36.0.1985.143&#8217; .</li>
-<li>navigate to:
- <code>http://src.chromium.org/viewvc/chrome/releases/[VERSION]/DEPS</code>
- ( replace [VERSION] with the actual string you found at step 1).
- In our example, this will be<br/>
- <a href="http://src.chromium.org/viewvc/chrome/releases/36.0.1985.143/DEPS">http://src.chromium.org/viewvc/chrome/releases/36.0.1985.143/DEPS</a>.
-This file,  maintained by the Chrome development team contains the description of all the dependencies and components used by Chrome, their location and their version number.</li>
-<li>Inside this file, search for the line containing <code>Var("v8")</code>.
-It will look like:
-<code>language
-Var("v8") + '/branches/3.26@22818',
-</code></li>
-<li>That&#8217;s it ! the corresponding V8 engine version is 3.26</li>
-</ol>
-
-
-<table>
-<thead>
-<tr>
-<th> </th>
-<th>-</th>
-<th> Chromium Version  </th>
-<th> V8 version </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> </td>
-<td>     </td>
-<td>36.0.1985.143 Windows     </td>
-<td> v3.26@22818      |</td>
-</tr>
-<tr>
-<td> </td>
-<td>     </td>
-<td>36.0.1985.125 Ubuntu 14.04 (283153) </td>
-<td> v3.26@21981 |</td>
-</tr>
-<tr>
-<td> </td>
-<td>     </td>
-<td>36.0.1985.57  IPhone    </td>
-<td> v3.26@21367 |</td>
-</tr>
-</tbody>
-</table>
-
-
-<p>This is explained in greater details in <a href="http://ariya.ofilabs.com/2012/02/find-v8-version-of-certain-chrome-release.html">this post</a></p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -650,85 +197,27 @@ Var("v8") + '/branches/3.26@22818',
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2012-11-25T00:38:00+00:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time>
+<time class='entry-date' datetime='2012-11-25T00:38:00+01:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:38 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>I am now using <a href="http://octopress.org">octopress</a> hosted in <a href="http://github.com">GitHub</a> for my blog.
+  <div class="entry-content"><p>I am now using <a href="http://octopress.org">octopress</a> hosted in <a href="http://github.com">GitHub</a> for my blog. 
 Octopress is based on <a href="https://github.com/mojombo/jekyll">Jekyll</a> which is a static site generator written in Ruby.
 Jekyll uses a combination of <a href="http://liquidmarkup.org/">Liquid</a> and <a href="http://old-wp.slekx.com/the-markdown-tutorial/">Markdown</a>
 , two markup engines that allow you to write your post almost in plain ascci without worrying about the HTML syntax.</p>
 
 <p>After installing a <a href="http://makokal.github.com/blog/2012/02/24/simple-jekyll-plugin-for-youtube-videos/">appropriated plugin</a>, I was able to insert youtube video frame using a Liquid sequence</p>
-
-<pre><code> {% youtube VIDEO_ID %}
-</code></pre>
-
-<p>Internaly the youtube tag triggers a little Liquid script that turns the video ID into the &lt;iframe> html element as required by the Youtube API.</p>
-
-<pre><code>&lt;iframe width="560" height="315"  
-        src="http://www.youtube.com/embed/q_NvDTZIaS4" 
-        frameborder="0" allowfullscreen &gt;&lt;/iframe&gt;
-</code></pre>
-
-<p>and produces :</p>
-
-<iframe width="560" height="315" src="http://www.youtube.com/embed/q_NvDTZIaS4" frameborder="0" allowfullscreen></iframe>
-
-
-<p>One of my first post included a lot of embedded youtube video and it was very convenient.</p>
-
-<p>However, with many videos includes the page takes a very long time to load, and the browser even freezes while the &lt;iframe> s were beeing installed.
-(not suprisingly many article,
-<a href="http://www.stevesouders.com/blog/2009/06/03/using-iframes-sparingly/">such as this one</a>
-recommand to use iframe sparingly for this very reason)</p>
-
-<p>Searching a little bit deeper, I stumbled across an article from <a href="http://yabtb.blogspot.fr/2011/12/lazy-load-youtube-videos.html">yabtb</a> explaining how overcome this problem, using a technique called <em>lazy loading</em>.</p>
-
-<p>In essence, lazy loading consist of replacing the &lt;iframe> with a static image  (using the &lt;img> tag) and a little bit of javascript to replace the &lt;img> tag with the proper &lt;iframe> tag at runtime when the reader clicks on the image.</p>
-
-<p>I then decided to improve the <em>youtube</em> <em>Liquid plugin</em> to use this technique and publish the new plugin  &lt;[code on github : <a href="https://github.com/erossignon/jekyll-youtube-lazyloading">https://github.com/erossignon/jekyll-youtube-lazyloading</a></p>
-
-<p>you can see the result of here :</p>
-
-<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('q_NvDTZIaS4');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/q_NvDTZIaS4&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
-<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/q_NvDTZIaS4/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=q_NvDTZIaS4" id="q_NvDTZIaS4" onclick="return false;">
-<div class="youtube-lazy-link-div"></div>
-<div class="youtube-lazy-link-info">Raspberry Pi - How to use the GPIO</div>
-</a>
-<div class="video-info" >http://goo.gl/mdVSm
-http://pypi.python.org/pypi/RPi.GPIO
-http://lwk.mjhosting.co.uk/?p=343
-Raspberry Pi
-How to use the GPIO
-www.raspberrypi.org</div>
-</div>
-
-
-<h3>Credits</h3>
-
-<ul>
-<li><a href="http://amobil.se/2011/11/responsive-embeds/">andmag</a></li>
-<li><a href="http://www.portwaypoint.co.uk/jekyll-youtube-liquid-template-tag-gist/">portwaypoint</a></li>
-<li><a href="http://yabtb.blogspot.fr/2011/12/lazy-load-youtube-videos.html">yatb</a></li>
-<li><a href="https://github.com/optikfluffel/octopress-responsive-video-embed">optikfluffel</a></li>
-<li><a href="http://stackoverflow.com/questions/843680/how-to-replace-dom-element-in-place-using-javascript?answertab=active#tab-top">stackoverflow</a></li>
-<li>http://net.tutsplus.com/tutorials/other/building-static-sites-with-jekyll/</li>
-<li>http://five.squarespace.com/display/ShowHelp?section=Markdown</li>
-</ul>
-
+<div class="highlight"><pre><code class="language-text" data-lang="text"> {% youtube VIDEO_ID %}
+</code></pre></div>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -748,276 +237,21 @@ www.raspberrypi.org</div>
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2012-11-22T11:18:00+00:00" pubdate data-updated="true">Nov 22<span>nd</span>, 2012</time>
+<time class='entry-date' datetime='2012-11-22T11:18:00+01:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2012</span></span> <span class='time'>11:18 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h2>1. a print server</h2>
-
-<p>Old printers can be refurbished into wireless printers using a Raspeberry PI. This makes it a very cheap solution.</p>
-
-<ul>
-<li> The Raspberry Pi as a <a href="http://blog.elzapp.com/2012/08/21/the-raspberry-pi-as-a-print-server-for-hp-color-laserjet-1600.html">print server for HP Color LaserJet 1600</a></li>
-<li> This <a href="http://raspberrypi.stackexchange.com/questions/980/how-can-i-set-up-a-print-server">stackoverflow article</a>
-explains how to set up a print Server with cups.</li>
-<li> You may have to purchase a <a href="http://www.usbgear.com/dock/">Parallel->USB port converter</a>  <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=17662">as explained here</a></li>
-</ul>
-
-
-<h2>2. a <a href="http://www.youtube.com/watch?v=zPsN0wH7hKY&amp;feature=related">GPS Tracker</a></h2>
-
-<p><a href="https://logicethos.com/blog/raspberry-pi-run/">Stuart Johnson</a> has created a GPS Tracker, combining a Raspberry PI
-with a GlobalSat BR-305 GPS Receiver which has a RS232 connection and a program written in Mono C#.</p>
-
-<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('zPsN0wH7hKY');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/zPsN0wH7hKY&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
-<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/zPsN0wH7hKY/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=zPsN0wH7hKY" id="zPsN0wH7hKY" onclick="return false;">
-<div class="youtube-lazy-link-div"></div>
-<div class="youtube-lazy-link-info">GPS Tracking with a Raspberry Pi</div>
-</a>
-<div class="video-info" >More details here https://logicethos.com/blog/raspberry-pi-run/
-Raspberry Pi
-GlobalSat BR-305 GPS
-Pi232 RS232 GPIO Expansion board
-Mono
-Turbo Exchange, & Websocket Map
-
-I used a GlobalSat BR-305 GPS receiver, to capture GPS data, and a GSM dongle to upload the data to the Logic Ethos GPS tracking platform. Software is written in C# Mono.</div>
-</div>
-
-
-<h2>3. a Geiger Counter:</h2>
-
-<p>Cooking Hack provides a [tutorial to build a Radiation Sensor]
-(http://www.cooking-hacks.com/index.php/documentation/tutorials/geiger-counter-raspberry-pi-radiation-sensor-board)</p>
-
-<p> <img src="http://www.cooking-hacks.com/skin/frontend/default/cooking/images/catalog/documentation/raspberry_radiation/raspberry_radiation.JPG"></img></p>
-
-<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('PONR_s7AXIg');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/PONR_s7AXIg&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
-<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/PONR_s7AXIg/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=PONR_s7AXIg" id="PONR_s7AXIg" onclick="return false;">
-<div class="youtube-lazy-link-div"></div>
-<div class="youtube-lazy-link-info">radioactive Raspberry Pi!</div>
-</a>
-<div class="video-info" >Geiger counter (http://mightyohm.com/blog/products/geiger-counter/) connected to a Raspberry Pi (http://www.element14.com/community/groups/raspberry-pi) with count visualized using the Python PyGame library. (by Bonnie King)</div>
-</div>
-
-
-<p> A <a href="http://www.libelium.com/wireless_sensor_networks_to_control_radiation_levels_geiger_counters/">more advance project</a>
- incorporates a GPS Tracker and Zigbee wireless less system.</p>
-
-<h2>4. Home Robotic:</h2>
-
-<h3>a voice controled robot</h3>
-
-<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('_U_v9tRD68k');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/_U_v9tRD68k&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
-<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/_U_v9tRD68k/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=_U_v9tRD68k" id="_U_v9tRD68k" onclick="return false;">
-<div class="youtube-lazy-link-div"></div>
-<div class="youtube-lazy-link-info">Voice Controlled Robot using a Raspberry Pi</div>
-</a>
-<div class="video-info" >I&#8217;ve managed to make the Raspberry Pi work as a speech recognition module to control a robotic arm with a USB interface. This is related to my previous video (http://youtu.be/32nIxJZvqtI), and as usual I&#8217;ve posted instructions on how to get it working on my website: http://www.aonsquared.co.uk/raspi_voice_control</div>
-</div>
-
-
-<h3>Raspberry Pi Robot Test!</h3>
-
-<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('VVNgPjM5pU4');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/VVNgPjM5pU4&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
-<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/VVNgPjM5pU4/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=VVNgPjM5pU4" id="VVNgPjM5pU4" onclick="return false;">
-<div class="youtube-lazy-link-div"></div>
-<div class="youtube-lazy-link-info">Raspberry Pi Big Trak Jr</div>
-</a>
-<div class="video-info" >A test of my Raspberry Pi Robot running Debian Linux, LAMP server & Node.js (Now.js Mod)
-Being controlled via my computer using Wi-Fi, The only thing that is wired is the power supply.
-
-Write up now at http://teck-studios.co.uk/index.php?topic=9.msg12
-Robot hacked from a BigTrak Jr.
-
-Music One Quarter By Fairlight.</div>
-</div>
-
-
-<h3>Raspberry Pi robot using node.js and Socket.io</h3>
-
-<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('SWSpRyCDfZE');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/SWSpRyCDfZE&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
-<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/SWSpRyCDfZE/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=SWSpRyCDfZE" id="SWSpRyCDfZE" onclick="return false;">
-<div class="youtube-lazy-link-div"></div>
-<div class="youtube-lazy-link-info">Raspberry Pi robot using node.js and socket.io</div>
-</a>
-<div class="video-info" >Demo of my first attempt to control GPIO pins on the Raspberry Pi from within the browser using websockets.
-
-Code: https://github.com/mirceageorgescu/raspi-tank</div>
-</div>
-
-
-<h2>5. Home automation</h2>
-
-<h3>Intelligent Home Heating System</h3>
-
-<h3>Thermostat</h3>
-
-<p><a href="http://monirulpathan.com/afterhours/raspberry-pi-thermostat">MONIRUL PATHAN</a> explains how he has built a home thermostat using 3 simple steps.
-<img src="http://monirulpathan.com/afterhours/wp-content/uploads/2012/09/2012-09-24-22.33.57.jpg"></img></p>
-
-<h3>Remote control of GPIO with iPhone</h3>
-
-<h2>6. a media center</h2>
-
-<p>How to turn your Raspberry Pi into an <a href="http://reviews.cnet.co.uk/desktops/how-to-turn-your-raspberry-pi-into-an-xbmc-media-centre-50008599/">XBMC Media Center</a></p>
-
-<h2>7. a file server</h2>
-
-<p>This article explains how to turn a Raspberry PI into a  <a href="http://simonthepiman.com/how_to_setup_windows_file_server.php">File Server</a></p>
-
-<p>LinuxToday article explains how to <a href="http://www.linuxtoday.com/upload/build-a-file-server-with-the-raspberry-pi-121009042000.html">Build a file server with the Raspberry Pi</a>
- in 20 steps.</p>
-
-<h2>8. a CCTV system</h2>
-
-<h2>9. Home Brewing</h2>
-
-<p><img src="http://starthomebrew.com/wp-content/uploads/2012/10/Brew-Beer-Equipment.png"></img></p>
-
-<p><a href="http://www.homebrewtalk.com/"  ><img src="http://cdn.homebrewtalk.com/images/head/logo.png"></img></a>
-As seen in Geek.com, an <a href="http://www.geek.com/articles/geek-cetera/homebrew-enthusiast-modifies-raspberry-pi-to-control-beer-fermentation-2012108/">Homebrew enthusiast modifies Raspberry Pi to control beer fermentation</a>
-<img src="http://www.geek.com/wp-content/uploads/2012/10/oled-rotary-encoder-1024x768-580x435.jpg"></img>
-In TechRepublic: <a href="http://www.techrepublic.com/photos/raspberry-pi-and-beer-a-match-made-in-heaven/6385042">Raspberry Pi and Beer: A match made in heaven</a></p>
-
-<h2>10. reviving a retro computer</h2>
-
-<p><a href="http://www.raspberrypi.org/archives/2338">retro</a>
-Back in 1988, I was the happy owner of the faster personal computer at the time : an Acorn Archimedes , running RiscOS.
-In fact the ARM 11 processor, which is the core of the Raspberry PI has a long history.
-The Acorn Archimedes was the first computer  equiped with a ARM based CPU.
-The instructions to install this 25 year old mythic Operating system on the RPI can be found here : <a href="http://www.raspberrypi.org/archives/2338">RISCOC for Raspberry Computer</a>.
-<img src="http://www.raspberrypi.org/wp-content/uploads/2012/11/srevill_ropi_projector.jpg"></img></p>
-
-<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('0LiudJUlOi0');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/0LiudJUlOi0&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
-<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/0LiudJUlOi0/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=0LiudJUlOi0" id="0LiudJUlOi0" onclick="return false;">
-<div class="youtube-lazy-link-div"></div>
-<div class="youtube-lazy-link-info">Raspberry Pi running RISC OS 5</div>
-</a>
-<div class="video-info" >I have a stack of old RISC OS machines including an Iyonix.  I loved them.  Best UI ever and still.  But they don&#8217;t have all the games and hardware of Windows or the internet ability of Linux.  So it&#8217;s been a while since I used one.  When I heard a that RISC OS would run on the Pi, I had to try it for myself!  Brilliant.  Here&#8217;s me trying it for the second time.</div>
-</div>
-
-
-<h2>11. Vintage Video Games</h2>
-
-<p><img src="http://static.geekbeat.tv/wp-content/uploads/2012/08/Raspberry_Pi_MAME.jpg"></img>
-<a href="http://kimondo.co.uk/elite-making-a-game-that-looks-as-good-as-the-box-art">Elite</a>
-<img src="http://regmedia.co.uk/2012/05/16/arch_5.png"></img></p>
-
-<h2>12. a coffe machine</h2>
-
-<p>  yes ! a <a href="http://moccapi.blogspot.co.uk/">coffee machine</a></p>
-
-<h2>13. Build your own 3D printer</h2>
-
-<p>Raspberry pi to 3D print with webinterface in node.js</p>
-
-<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('tsMdusrO6bk');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/tsMdusrO6bk&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
-<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/tsMdusrO6bk/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=tsMdusrO6bk" id="tsMdusrO6bk" onclick="return false;">
-<div class="youtube-lazy-link-div"></div>
-<div class="youtube-lazy-link-info">Raspberry pi to 3D print with webinterface in node.js!</div>
-</a>
-<div class="video-info" >Well wanting to have an autonomous way of printing my 3d objects. Did it with the cheap raspberry pi! This way you can have farms of printers and all control them with some clicks in your browser. 
-
-I finally had some time to clean it up and post on github here:
-https://github.com/w-A-L-L-e/printerface</div>
-</div>
-
-
-<h2>14. Weather Station</h2>
-
-<p>Connecting 2 temperature sensors, light sensor and a barometric pressure sensor on a Raspberry to build a weather station.
-on <a href="Temperatures,%20light%20levels,%20pressure,%20logging,%20LCD,%20PCB%20-%20bringing%20it%20all%20together">RasPi.tv</a></p>
-
-<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('Hu2s9cxKuIM');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/Hu2s9cxKuIM&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
-<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/Hu2s9cxKuIM/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=Hu2s9cxKuIM" id="Hu2s9cxKuIM" onclick="return false;">
-<div class="youtube-lazy-link-div"></div>
-<div class="youtube-lazy-link-info">Raspberry Pi Weather Station on a Proto-Plate</div>
-</a>
-<div class="video-info" >I&#8217;ve finally got my Weather Station with temp sensors, light sensors and a barometric pressure sensor onto a nice compact board which sits on top of the Raspberry Pi.
-Video goes with this blog article http://raspi.tv/2012/temperatures-light-levels-pressure-logging-lcd-pcb-bringing-it-all-together</div>
-</div>
-
-
-<p>Why not use the <a href="http://cgi.cottonpickers.plus.com/~cottonpickers/forum/viewtopic.php?f=4&amp;t=3">&#8220;Solar Battery Cells&#8221;</a> propepsed by cottonpickers to make this weather station autonomous ?</p>
-
-<p><img width="520px" src="http://img205.imageshack.us/img205/1992/img3680iw.jpg"></img>
-<img width="520px" src="http://img577.imageshack.us/img577/9264/img3681v.jpg"><img></p>
-
-<h2>15. a Near Space Craft</h2>
-
-<p><img  style="text-align:center" width="520px" src="http://www.daveakerman.com/wp-content/uploads/2012/07/P1040569-1024x682.jpg" alt="Raspberry Pi in the Sky"></img></p>
-
-<p>Launch of Raspberry Pi Into Near Space by weather balloon</p>
-
-<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('OnmRudVVq_U');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/OnmRudVVq_U&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
-<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/OnmRudVVq_U/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=OnmRudVVq_U" id="OnmRudVVq_U" onclick="return false;">
-<div class="youtube-lazy-link-div"></div>
-<div class="youtube-lazy-link-info">Launch of Raspberry Pi Into Near Space by weather balloon</div>
-</a>
-<div class="video-info" >Launch of my latest weather balloon flight, with 3 payloads:
-
-PIE1 - Live images sent down by a Raspberry Pi
-UAVA - Telemetry and GoPro HD, by Anthony Stirk
-BUZZ8 - Telemetry backup</div>
-</div>
-
-
-<p><a href="http://www.daveakerman.com/?p=592">PIE1 - Raspberry Pi Sends Live Images from Near Space</a></p>
-
-<h2>16. a HPC Computer</h2>
-
-<p>A Southampton university team and a 6 year old Lego specialist has built a HPC computer
-composed with a cluster of 64 Raspberry PI</p>
-
-<blockquote><p>Building a High Performance Computer ourself with a aim to inspire the next generation of scientist and engineers.</p></blockquote>
-
-<p>Supercomputer get built using Raspberry Pi and Lego
-<img src="http://cdn.arstechnica.net/wp-content/uploads/2012/09/raspberry-pi-supercomputer-2-640x425.jpg"></img></p>
-
-<div class="ratio-4-3 embed-video-container" onclick="var myAnchor = document.getElementById('Jq5nrHz9I94');var tmpDiv = document.createElement('div');tmpDiv.innerHTML = '&lt;iframe style=&quot;vertical-align:top;width:100%;height:100%;position:absolute;&quot; src=&quot;http://www.youtube.com/embed/Jq5nrHz9I94&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;';myAnchor.parentNode.replaceChild(tmpDiv.firstChild, myAnchor);return false;" title="click here to play">
-<a class="youtube-lazy-link" style="width:100%;height:100%;background:#000 url(http://i2.ytimg.com/vi/Jq5nrHz9I94/0.jpg) center center no-repeat;background-size:contain;position:absolute" href="http://www.youtube.com/watch?v=Jq5nrHz9I94" id="Jq5nrHz9I94" onclick="return false;">
-<div class="youtube-lazy-link-div"></div>
-<div class="youtube-lazy-link-info">University of Southampton - Southampton engineers a Raspberry Pi Supercomputer</div>
-</a>
-<div class="video-info" >Computational Engineers at the University of Southampton have built a supercomputer from 64 Raspberry Pi computers and Lego.
-
-The team, led by Professor Simon Cox, consisted of Richard Boardman, Andy Everett, Steven Johnston, Gereon Kaiping, Neil O&#8217;Brien, Mark Scott and Oz Parchment, along with Professor Cox&#8217;s son James Cox (aged 6) who provided specialist support on Lego and system testing.
-
-Professor Cox comments: &#8220;As soon as we were able to source sufficient Raspberry Pi computers we wanted to see if it was possible to link them together into a supercomputer. We installed and built all of the necessary software on the Pi starting from a standard Debian Wheezy system image and we have published a guide so you can build your own supercomputer.&#8221;
-To read the full story go to:
-http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.shtml</div>
-</div>
-
-
-<ul>
-<li><a href="http://www.hpcwire.com/hpcwire/2012-09-12/supercomputer_gets_built_using_rasberry_pi_computers_and_lego.html">Supercomputer gets built using Raspberry Pi computers and Lego</a></li>
-<li><a href="http://www.lemondeinformatique.fr/actualites/lire-un-supercalculateur-en-raspberry-pi-et-en-lego-50408.html">Un supercalculateur en Raspberry Pi et en Lego</a></li>
-<li><a href="http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.shtml">Southampton engineers a Raspberry Pi Supercomputer</a></li>
-<li><a href="http://www.southampton.ac.uk/~sjc/raspberrypi/">Southampton University Web Site</a></li>
-</ul>
-
-
-<p>see also:</p>
-
-<ul>
-<li><a href="http://www.techrepublic.com/blog/european-technology/10-coolest-uses-for-the-raspberry-pi/505">10 coolest uses for the Raspberry Pi</a></li>
-<li><a href="http://geekbeat.tv/5-cool-projects-for-your-raspberry-pi/">5 cool projects for your Raspberry Pi</a></li>
-<li><a href="http://www.guardian.co.uk/technology/2012/nov/04/12-things-to-make-raspberry-pi">12 things to do with a Raspberry Pi</a></li>
-</ul>
+  <div class="entry-content"><p>The Raspberry Pi is a 35$ nano-computer that can do a lot </p>
 
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -1040,23 +274,23 @@ http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.sht
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/08/22/benchmarking-the-performance-of-nodejs/">benchmarking the performance of nodejs</a>
+        <a href="/blog/2014/08/22/benchmarking-the-performance-of-nodejs/">Benchmarking the Performance of Nodejs</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/">how to find the version of the V8 my nodejs engine is using </a>
+        <a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-nodejs-engine-is-using/">What V8 Version Is My Nodejs Running ?</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using/">how to find the version of the V8 my Chromium browser is using</a>
+        <a href="/blog/2014/08/22/how-to-find-the-version-of-the-v8-my-chromium-browser-is-using/">What Version of V8 My Chromium Browser Is Using ?</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/">Improve responsiveness of Youtube frames in  Jekyll and Octopress pages</a>
+        <a href="/blog/2012/11/25/improve-responsiveness-of-youtube-frames-in-jekyll-and-octopress-pages/">Improve Responsiveness of Youtube Frames in Jekyll and Octopress Pages</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/">16 amazing things you can do with a Raspberry PI</a>
+        <a href="/blog/2012/11/22/10-awsome-applications-with-raspberry-pi/">16 Amazing Things You Can Do With a Raspberry PI</a>
       </li>
     
   </ul>
@@ -1065,13 +299,13 @@ http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.sht
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/erossignon">@erossignon</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -1093,9 +327,17 @@ http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.sht
 
 
 <section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/er_gadz?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/er_gadz">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+<section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -1106,29 +348,6 @@ http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.sht
   
     <a href="http://twitter.com/gadz_er" class="twitter-follow-button" data-show-count="false">Follow @gadz_er</a>
   
-</section>
-
-
-<section>
-  <h1>On Delicious</h1>
-  <div id="delicious"></div>
-  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/er_gadz?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
-  <p><a href="http://delicious.com/er_gadz">My Delicious Bookmarks &raquo;</a></p>
-</section>
-
-
-
-
-<section>
-  <h1>Newsstand</h1>
-<script src="http://widgets.paper.li/javascripts/init.js" type="text/javascript"></script>
-<script>
-  Paperli.PaperWidget.Show({
-      pid: 'gadz_er/1324366784',
-      width: 200,
-      background: '#252525'
-  })
-</script>
 </section>
 
 
@@ -1153,7 +372,7 @@ http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.sht
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -1169,7 +388,7 @@ http://www.southampton.ac.uk/mediacentre/features/raspberry_pi_supercomputer.sht
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
