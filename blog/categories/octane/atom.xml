@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octane | Gadz-Geek Blog]]></title>
   <link href="http://erossignon.github.io/blog/categories/octane/atom.xml" rel="self"/>
   <link href="http://erossignon.github.io/"/>
-  <updated>2014-09-06T10:51:49+02:00</updated>
+  <updated>2014-09-06T11:47:37+02:00</updated>
   <id>http://erossignon.github.io/</id>
   <author>
     <name><![CDATA[Etienne Rossignon]]></name>
@@ -146,13 +146,15 @@ Daishi Kato has published <a href="https://github.com/dai-shi/benchmark-octane">
 </tbody></table>
 
 <h2>running NodeJS Benchmark</h2>
-
-<p>Follow this instruction to run <a href="https://github.com/erossignon/benchmark-octane">Benchmark-octane</a> </p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>git clone https://github.com/erossignon/benchmark-octane
-<span class="nv">$ </span><span class="nb">cd </span>benchmark-octane
-<span class="nv">$ </span>npm install
-<span class="nv">$ </span>node run.js
-</code></pre></div>]]></content>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>npm install benchmark-octane -g
+<span class="nv">$ </span>benchmark-octane
+</code></pre></div>
+<ul>
+<li>What&#39;s about you ? </li>
+<li>Can you tell me the octane score you get with you hardware and nodejs version ?</li>
+<li>Do you also experiment a crash with nodejs 0.10.31 ?</li>
+</ul>
+]]></content>
   </entry>
   
 </feed>
