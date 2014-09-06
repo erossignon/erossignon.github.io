@@ -1,0 +1,59 @@
+table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%;
+}
+table {  
+  background: #fff;
+  overflow: hidden;
+  border: 1px solid $base02;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+table td,  table th {
+  padding: 3px 10px;
+}
+table thead th {
+  background-color:$base02;
+  color:#FFFFFF;
+  font-weight: bold;
+  border-left: 1px solid $base02;
+}
+table thead th:first-child {
+  border: none;
+}
+table tbody td {
+  color: $base02;
+  border-left: 1px solid $base02;
+/*  font-size: 12px;
+    font-weight: normal;*/
+}
+table tbody .alt td {
+  background: $base2; color: $base02;
+}
+table tbody td:first-child { border-left: none; }
+table tbody tr:last-child td { border-bottom: none; }
+table tfoot td div { border-top: 1px solid $base02;background: $base2;}
+table tfoot td {
+  padding: 0;
+  /* font-size: 12px*/
+}
+table tfoot td div{ padding: 2px; }
+table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }
+table tfoot  li { display: inline; }
+table tfoot li a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 1px;
+  color: $base2;
+  border: 1px solid $base02;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: $base02;
+}
+table tfoot ul.active,  table tfoot ul a:hover {
+  text-decoration: none;border-color: $base02; color: $base2; background: none; background-color:$base02;
+}

@@ -3,10 +3,11 @@ layout: post
 title: "16 amazing things you can do with a Raspberry PI"
 date: 2012-11-22 11:18
 comments: true
-categories:  [ RaspberryPi , Fun , embedded linux ]
-published: true 
+_categories:  [ fun , embedded linux , nanacomputing ]
 ---
+The Raspberry Pi is a 35$ nano-computer that can do a lot 
 
+<!-- more -->
 
 ## 1. a print server
 

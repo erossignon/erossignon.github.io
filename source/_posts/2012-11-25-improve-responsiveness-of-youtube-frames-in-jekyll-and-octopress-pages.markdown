@@ -3,8 +3,7 @@ layout: post
 title: "Improve responsiveness of Youtube frames in  Jekyll and Octopress pages"
 date: 2012-11-25 00:38
 comments: true
-categories: 
-
+categories: [ jekyll , octopress, youtube ]
 ---
 
 I am now using [octopress](http://octopress.org) hosted in [GitHub](http://github.com) for my blog. 
@@ -17,6 +16,7 @@ After installing a [appropriated plugin](http://makokal.github.com/blog/2012/02/
      {% youtube VIDEO_ID %}
 {% endraw %}
 
+<!-- more -->
 
 Internaly the youtube tag triggers a little Liquid script that turns the video ID into the \<iframe\> html element as required by the Youtube API.
 
