@@ -6,6 +6,7 @@ comments: true
 categories:  [ V8, nodejs , benchmark , octane , chrome ]
 ---
 
+
 During the course of developing [node-opcua](http://node-opcua.github.io/), a javascript framework for OPCUA powered by
 [nodejs](http://nodejs.org), I came across the need to measure the performance of nodejs on various hardware including
 ARM based nano-computers such as RasberryPi and BeagleBoneBlack.
@@ -67,14 +68,18 @@ This is the result of running **benchmark-octane** on various version of node:
 |VM Ubuntu 14.04 | nodejs 0.11.13|8050| 50s    |
 
 
+
 ## running NodeJS Benchmark
 
 
-Follow this instruction to run [Benchmark-octane](https://github.com/erossignon/benchmark-octane) 
- 
 ```bash
-$ git clone https://github.com/erossignon/benchmark-octane
-$ cd benchmark-octane
-$ npm install
-$ node run.js
+$ npm install benchmark-octane -g
+$ benchmark-octane
 ```
+
+* What's about you ? 
+* Can you tell me the octane score you get with you hardware and nodejs version ?
+* Do you also experiment a crash with nodejs 0.10.31 ?
+
+
+
